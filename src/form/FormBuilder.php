@@ -27,17 +27,21 @@ class FormBuilder
         return $this;
     }
 
-//    public function addFieldsSelect(string $for, string $label, string $name, array $options): void
-//    {
-//        $selects = '<label for="' . $for . '">' . $label . '</label>
-//        <select id="' . $for . '" name="' . $name . '">';
-//        foreach ($options as $key => $value) {
-//            $selects .= '<op';
-//        }
-//    }
+    public function addFieldsSelect(string $for, string $label, string $name, array $options): FormBuilder
+    {
+        $select = '<label for="' . $for . '">' . $label . '</label>
+        <select id="' . $for . '" name="' . $name . '">';
+        foreach ($options as $key => $value) {
+            $select .= '<option value="' . $key . '">' . $value . '</option>';
+        }
+        $select .= '</select>';
+        $this->fields[] = $select;
+        return $this;
+    }
+
     public function render(): void
     {
-         echo implode($this->fields);
+        echo implode($this->fields);
     }
 
 

@@ -11,10 +11,8 @@
             "App\\": "src/"
         }
     },
-    "require-dev": {
-        "symfony/var-dumper": "^6.2"
-    },
-  "require": {
-    "ext-pdo": "*"
+    "require": {
+    "ext-pdo": "*",
+        "symfony/var-dumper": "^5.4"
   }
 }

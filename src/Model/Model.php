@@ -15,7 +15,7 @@ class Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAll(): bool|array
+    public function getAll(): array
     {
         $stmt = DBConnect::getPDO()->prepare("SELECT * FROM article");
         $stmt->execute();

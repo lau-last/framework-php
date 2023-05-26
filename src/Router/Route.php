@@ -2,7 +2,7 @@
 
 namespace App\Router;
 
-class Route
+final class Route
 {
     private string $path;
     public array $params;

@@ -5,12 +5,13 @@ namespace App\formBuilder\field;
 final class Textarea
 {
     private array $att;
-    private bool $required;
+    private bool $required = false;
+    private string $name;
 
-    public function __construct(array $att = [], bool $required = false)
+    public function __construct(string $name, array $att = [])
     {
         $this->att = $att;
-        $this->required = $required;
+        $this->name = $name;
     }
 
     public function __toString(): string
@@ -19,6 +20,12 @@ final class Textarea
         foreach ($this->att as $key => $value) {
             $attribute[] = sprintf('%s="%s"', $key, $value);
         }
-        return sprintf('<textarea %s %s></textarea>', implode(' ', $attribute), $this->required ? 'required' : '');
+        return sprintf('<textarea name="%s" %s %s></textarea>', $this->name, implode(' ', $attribute), $this->required ? 'required' : '');
+    }
+
+    public function required(): self
+    {
+        $this->required = true;
+        return $this;
     }
 }

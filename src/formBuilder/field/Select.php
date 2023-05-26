@@ -5,12 +5,13 @@ namespace App\formBuilder\field;
 final class Select
 {
     private array $att;
-    private bool $required;
+    private bool $required = false;
+    private string $name;
 
-    public function __construct(array $att = [],bool $required = false)
+    public function __construct(string $name, array $att = [])
     {
         $this->att = $att;
-        $this->required = $required;
+        $this->name = $name;
     }
 
     public function start(): string
@@ -19,12 +20,18 @@ final class Select
         foreach ($this->att as $key => $value) {
             $attribute[] = sprintf('%s="%s"', $key, $value);
         }
-        return sprintf('<select %s %s>', implode(' ', $attribute), $this->required ? 'required' : '');
+        return sprintf('<select name="%s" %s %s>', $this->name, implode(' ', $attribute), $this->required ? 'required' : '');
     }
 
     public function end(): string
     {
         return '</select>';
+    }
+
+    public function required(): self
+    {
+        $this->required = true;
+        return $this;
     }
 
 }

@@ -25,7 +25,7 @@ final class Form
         return '</form>';
     }
 
-    public static function isValid(): bool
+    public static function postIsEmpty(): bool
     {
         if(empty($_POST)){
             return true;

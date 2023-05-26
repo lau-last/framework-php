@@ -2,7 +2,7 @@
 
 namespace App\Router;
 
-class Router
+final class Router
 {
     private array $routes;
 
@@ -11,13 +11,15 @@ class Router
         $this->routes = require_once '../src/config/routes.php';
     }
 
-    public function run()
+    public function run(string $url)
     {
         foreach ($this->routes as $route) {
-            if ($route->matches($_SERVER['REQUEST_URI'])) {
+            if ($route->matches($url)) {
                 $route->callAction();
             }
         }
+        header('HTTP/1.1 404 Not Found');
+        exit;
     }
 
 }

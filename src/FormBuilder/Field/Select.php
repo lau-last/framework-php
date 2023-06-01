@@ -1,6 +1,6 @@
 <?php
 
-namespace App\formBuilder\field;
+namespace App\FormBuilder\Field;
 
 final class Select
 {

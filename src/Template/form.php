@@ -1,8 +1,8 @@
 <?php
 
-use App\formBuilder\field\Button;
-use App\formBuilder\field\Input;
-use App\formBuilder\Form;
+use App\FormBuilder\Field\Button;
+use App\FormBuilder\Field\Input;
+use App\FormBuilder\Form;
 
 
 if(Form::postIsEmpty()) {

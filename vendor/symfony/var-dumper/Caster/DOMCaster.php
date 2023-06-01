@@ -147,7 +147,7 @@ class DOMCaster
             'xmlVersion' => $dom->xmlVersion,
             'strictErrorChecking' => $dom->strictErrorChecking,
             'documentURI' => $dom->documentURI ? new LinkStub($dom->documentURI) : $dom->documentURI,
-            'config' => $dom->config,
+            'Config' => $dom->config,
             'formatOutput' => $dom->formatOutput,
             'validateOnParse' => $dom->validateOnParse,
             'resolveExternals' => $dom->resolveExternals,

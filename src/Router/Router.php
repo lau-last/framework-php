@@ -8,7 +8,7 @@ final class Router
 
     public function __construct()
     {
-        $this->routes = require_once '../src/config/routes.php';
+        $this->routes = require_once '../src/Config/routes.php';
     }
 
     public function run(string $url)

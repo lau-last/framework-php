@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App\Manager;
 
-use App\database\DBConnect;
+use App\Database\DBConnect;
 use PDO;
 
 final class Manager

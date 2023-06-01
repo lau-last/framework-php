@@ -1,6 +1,6 @@
 <?php
 
-namespace App\formBuilder;
+namespace App\FormBuilder;
 
 final class Form
 {

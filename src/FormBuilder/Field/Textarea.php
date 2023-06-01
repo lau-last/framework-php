@@ -1,18 +1,16 @@
 <?php
 
-namespace App\formBuilder\field;
+namespace App\FormBuilder\Field;
 
-final class Input
+final class Textarea
 {
     private array $att;
     private bool $required = false;
-    private string $type;
     private string $name;
 
-    public function __construct(string $name, string $type = 'text', array $att = [])
+    public function __construct(string $name, array $att = [])
     {
         $this->att = $att;
-        $this->type = $type;
         $this->name = $name;
     }
 
@@ -22,7 +20,7 @@ final class Input
         foreach ($this->att as $key => $value) {
             $attribute[] = sprintf('%s="%s"', $key, $value);
         }
-        return sprintf('<input type="%s" name="%s" %s %s>', $this->type, $this->name, implode(' ', $attribute), $this->required ? 'required' : '');
+        return sprintf('<textarea name="%s" %s %s></textarea>', $this->name, implode(' ', $attribute), $this->required ? 'required' : '');
     }
 
     public function required(): self
@@ -30,5 +28,4 @@ final class Input
         $this->required = true;
         return $this;
     }
-
 }

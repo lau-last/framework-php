@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\query;
+namespace App\Manager\Query;
 
 final class Insert
 {

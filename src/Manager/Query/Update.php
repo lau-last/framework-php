@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model\query;
+namespace App\Manager\Query;
 
-class Update
+final class Update
 {
     private string $table;
     private string $set;
@@ -11,7 +11,6 @@ class Update
     public function __construct(string $table)
     {
         $this->table = $table;
-
     }
 
     public function __toString(): string

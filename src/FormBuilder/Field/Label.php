@@ -1,8 +1,8 @@
 <?php
 
-namespace App\formBuilder\field;
+namespace App\FormBuilder\Field;
 
-final class Option
+final class Label
 {
     private string $label;
     private array $att;
@@ -19,6 +19,7 @@ final class Option
         foreach ($this->att as $key => $value) {
             $attribute[] = sprintf('%s="%s"', $key, $value);
         }
-        return sprintf('<option %s>%s</option>', implode(' ', $attribute), $this->label);
+        return sprintf('<label %s>%s</label>', implode(' ', $attribute), $this->label);
     }
+
 }

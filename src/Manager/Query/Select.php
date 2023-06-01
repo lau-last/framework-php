@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Model\query;
+namespace App\Manager\Query;
 
 final class Select
 {
     private string $table;
     private array $value;
-    private ?string $join = null;
-    private ?string $where = null;
+    private ?array $join = [];
+    private ?array $where = [];
     private ?string $orderBy = null;
 
 
@@ -15,8 +15,8 @@ final class Select
     {
         $results = $manager->queryTruc(  // fetchAll(string $sqlQuery, array$params)
             (new Select("article", ["titre", "contenu"]))
-                ->join("user ON user.id = article.user_id") // MULTIPLE
-                ->where("title LIKE %:title%") // MULTIPLE : Comment multi-params en php sur une fonction, et itérer sur ceux ci
+                ->join(["user ON user.id = article.user_id"]) // MULTIPLE
+                ->where("title LIKE %:title%", "coucou = coucou") // MULTIPLE : Comment multi-params en php sur une fonction, et itérer sur ceux ci
                 ->orderBy("titre"),
             [ // partie BIND PARAM dans le manager.
                 "title" => "Doit contenir ce truc"
@@ -37,20 +37,22 @@ final class Select
     public function __toString(): string
     {
         return 'SELECT ' . implode(', ', $this->value) . ' FROM ' . $this->table
-            . ($this->join !== null ? 'INNER JOIN ' . $this->join : '')
-            . ($this->where !== null ? 'WHERE ' . $this->where : '')
-            . ($this->orderBy !== null ? 'ORDER BY ' . $this->orderBy : '');
+            . (!empty($this->join) ? ' INNER JOIN ' . implode($this->join) : '')
+            . ($this->where !== [] ? ' WHERE ' . implode( ' AND ', $this->where) : '')
+            . ($this->orderBy !== null ? ' ORDER BY ' . $this->orderBy : '');
     }
 
-    public function join(string $join): self
+    public function join(array $join): self
     {
         $this->join = $join;
         return $this;
     }
 
-    public function where(string $where): self
+    public function where(string ...$where): self
     {
-        $this->where = $where;
+        foreach ($where as $arg) {
+            $this->where[] = $arg;
+        }
         return $this;
     }
 

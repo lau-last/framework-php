@@ -1,8 +1,8 @@
 <?php
 
-namespace App\formBuilder\field;
+namespace App\FormBuilder\Field;
 
-final class Label
+final class Button
 {
     private string $label;
     private array $att;
@@ -19,7 +19,6 @@ final class Label
         foreach ($this->att as $key => $value) {
             $attribute[] = sprintf('%s="%s"', $key, $value);
         }
-        return sprintf('<label %s>%s</label>', implode(' ', $attribute), $this->label);
+        return sprintf('<button %s>%s</button>', implode(' ', $attribute), $this->label);
     }
-
 }

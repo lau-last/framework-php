@@ -5,24 +5,31 @@ namespace App\Model;
 use App\database\DBConnect;
 use PDO;
 
-class Manager
+final class Manager
 {
-    public function fetch(string $query, array $param = [])
+
+    public function queryExecute(string $query, array $param = []): bool|\PDOStatement
     {
         $stmt = DBConnect::getPDO()->prepare($query);
-        foreach ($param as $key => $value){
-            $stmt->bindParam(':' . $key, $value);
+        if ($param !== []) {
+            foreach ($param as $key => $value) {
+                $stmt->bindParam(':' . $key, $value);
+            }
         }
         $stmt->execute();
+        return $stmt;
+    }
+
+    public function fetch(string $query, array $param = [])
+    {
+        $stmt = $this->queryExecute($query, $param);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function fetchAll(string $query): bool|array
+    public function fetchAll(string $query, array $param = []): bool|array
     {
-        $stmt = DBConnect::getPDO()->prepare($query);
-        $stmt->execute();
+        $stmt = $this->queryExecute($query, $param);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
 }

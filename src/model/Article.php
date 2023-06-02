@@ -9,12 +9,22 @@ final class Article
     private string $head;
     private string $content;
     private string $date;
-    private int $user_id;
+    private int $userId;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function setId(int $id): self
     {
-        $this->id = intval($id);
+        $this->id = $id;
         return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     public function setTitle(string $title): self
@@ -23,10 +33,20 @@ final class Article
         return $this;
     }
 
+    public function getHead(): string
+    {
+        return $this->head;
+    }
+
     public function setHead(string $head): self
     {
         $this->head = $head;
         return $this;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
     }
 
     public function setContent(string $content): self
@@ -35,16 +55,25 @@ final class Article
         return $this;
     }
 
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
     public function setDate(string $date): self
     {
         $this->date = $date;
         return $this;
     }
 
-    public function setUserId(int $user_id): self
+    public function getUserId(): int
     {
-        $this->user_id = intval($user_id);
-        return $this;
+        return $this->userId;
     }
 
+    public function setUserId(int $userId): self
+    {
+        $this->userId = $userId;
+        return $this;
+    }
 }

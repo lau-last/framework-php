@@ -6,6 +6,6 @@ class HomeController
 {
     public function showHome(): void
     {
-        echo 'showHome';
+        require_once '../src/template/base.html';
     }
 }

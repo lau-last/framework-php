@@ -6,9 +6,9 @@ final class Router
 {
     private array $routes;
 
-    public function __construct()
+    public function __construct(array $routes)
     {
-        $this->routes = require_once '../src/config/routes.php';
+        $this->routes = $routes;
     }
 
     public function run(string $url)
@@ -18,8 +18,6 @@ final class Router
                 $route->callAction();
             }
         }
-        header('HTTP/1.1 404 Not Found');
-        exit;
     }
 
 }

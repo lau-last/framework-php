@@ -5,6 +5,7 @@ namespace App\manager\query;
 final class Select
 {
     private string $table;
+
     private array $value;
     private ?array $join = [];
     private ?array $where = [];

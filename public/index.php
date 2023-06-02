@@ -5,10 +5,10 @@ ini_set('display_errors', 1);
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-//$select = new \App\manager\query\Select('article', ['*']);
-//dump((new App\manager\Manager())->fetchAll($select));
-//die();
+$article = (new \App\model\hydrate\Hydrate())->hydrateUser();
+dump($article);
+die();
 
-(new \App\router\Router())->run(\App\tool\Server::getUri());
+(new \App\router\Router(require_once '../src/config/routes.php'))->run(\App\tool\Server::getUri());
 
 

@@ -5,4 +5,10 @@ ini_set('display_errors', 1);
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-(new \App\Router\Router())->run('/');
+//$select = new \App\manager\query\Select('article', ['*']);
+//dump((new App\manager\Manager())->fetchAll($select));
+//die();
+
+(new \App\router\Router())->run(\App\tool\Server::getUri());
+
+

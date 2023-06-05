@@ -5,6 +5,4 @@ ini_set('display_errors', 1);
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-(new \App\router\Router(require_once '../src/config/routes.php'))->run(\App\tool\Server::getUri());
-
-
+(new \App\Router\Router(require_once '../config/routes.php'))->run($_SERVER['REQUEST_URI']);

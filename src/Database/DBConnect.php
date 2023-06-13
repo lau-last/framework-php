@@ -11,7 +11,7 @@ final class DBConnect
     public static function getPDO(): PDO
     {
         if (self::$pdo === null) {
-            self::$pdo = new PDO('mysql:host=localhost:8889; dbname=blog;charset=utf8', 'root', 'root');
+            self::$pdo = new PDO(getenv('DATABASE_DNS'), getenv('DATABASE_USER'), getenv('DATABASE_PASSWORD'));
         }
         return self::$pdo;
     }

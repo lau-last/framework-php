@@ -3,6 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-(new \App\Router\Router(require_once '../config/routes.php'))->run($_SERVER['REQUEST_URI']);
+$request = new \Core\Http\Request($_SERVER, $_GET, $_POST);
+(new \Core\Router\Router(require_once '../config/routes.php'))->match($request);

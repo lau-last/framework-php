@@ -11,5 +11,10 @@
             "email": "laurent.last7@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    }
 }

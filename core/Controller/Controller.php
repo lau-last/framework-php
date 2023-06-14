@@ -11,7 +11,7 @@ abstract class Controller
     {
         \ob_start();
         \extract($data);
-        require $this->viewPath . $view . '.php';
+        require $this->viewPath . \str_replace('.', '/', $view) . '.php';
         $content = \ob_get_clean();
         require $this->viewPath . $this->template . '.php';
     }

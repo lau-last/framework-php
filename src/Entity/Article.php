@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Entity;
-final class Article
+use Core\Entity\Entity;
+
+final class Article extends Entity
 {
     private int $id;
     private string $title;

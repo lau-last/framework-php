@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Entity;
-final class Comment
+use Core\Entity\Entity;
+
+final class Comment extends Entity
 {
     private int $id;
     private string $content;

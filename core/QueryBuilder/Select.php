@@ -2,7 +2,7 @@
 
 namespace Core\QueryBuilder;
 
-final class Select extends Manager
+final class Select
 {
     private string $table;
 

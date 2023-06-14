@@ -5,7 +5,7 @@ namespace Core\QueryBuilder;
 use App\Database\DBConnect;
 use PDO;
 
-abstract class Manager
+final class Manager
 {
 
     public function queryExecute(string $query, array $param = []): \PDOStatement

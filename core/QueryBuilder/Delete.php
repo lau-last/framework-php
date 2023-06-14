@@ -2,7 +2,7 @@
 
 namespace Core\QueryBuilder;
 
-final class Delete extends Manager
+final class Delete
 {
     private string $table;
     private array $where = [];

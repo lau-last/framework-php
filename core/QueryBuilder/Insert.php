@@ -2,7 +2,7 @@
 
 namespace Core\QueryBuilder;
 
-final class Insert extends Manager
+final class Insert
 {
     private string $table;
     private array $value;

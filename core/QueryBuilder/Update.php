@@ -2,7 +2,7 @@
 
 namespace Core\QueryBuilder;
 
-final class Update extends Manager
+final class Update
 {
     private string $table;
     private string $set;

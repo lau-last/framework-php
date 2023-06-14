@@ -2,12 +2,22 @@
 
 namespace App\Controller;
 
-final class ArticleController
+use App\Entity\Article;
+use Core\Controller\Controller;
+
+final class ArticleController extends Controller
 {
-    protected string $template = 'show.post';
-    protected string $viewPath = ROOT . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Template' . DIRECTORY_SEPARATOR;
+    protected string $template = 'base';
+    protected string $viewPath = ROOT . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Html' . DIRECTORY_SEPARATOR;
 
-    public function showAll(){
-
+    public function showAll()
+    {
+        $data = (new \Core\QueryBuilder\Manager())->fetchAll(new \Core\QueryBuilder\Select('article', ['*']));
+        $articles = [];
+        foreach ($data as $result) {
+            $articles[] = new Article($result);
+        }
+        var_dump($articles);
+        $this->render('showAll');
     }
 }

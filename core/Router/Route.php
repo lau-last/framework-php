@@ -13,7 +13,7 @@ class Route
     private array $method;
 
 
-    public function __construct(string $path, string $controllerName, string $action, array $method = ['GET'])
+    public function __construct(string $path, string $controllerName, string $action, array $method = [])
     {
         $this->path = $path;
         $this->controllerName = $controllerName;

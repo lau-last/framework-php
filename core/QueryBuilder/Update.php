@@ -15,7 +15,7 @@ final class Update extends Manager
 
     public function __toString(): string
     {
-        return 'UPDATE ' . $this->table . ' SET ' . $this->set . ($this->where !== [] ? ' WHERE ' . implode(' AND ', $this->where) : '');
+        return 'UPDATE ' . $this->table . ' SET ' . $this->set . ($this->where !== [] ? ' WHERE ' . \implode(' AND ', $this->where) : '');
     }
 
     public function set(string $set): self

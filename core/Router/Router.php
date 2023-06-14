@@ -4,11 +4,8 @@ namespace Core\Router;
 
 use Core\Http\Request;
 
-final class Router
+class Router
 {
-    /**
-     * @var array<Route>
-     */
     private array $routes;
 
     public function __construct(array $routes)
@@ -16,14 +13,13 @@ final class Router
         $this->routes = $routes;
     }
 
-    public function match(Request $request): ?Route
+    public function run(Request $request)
     {
-//        dd($request);
         foreach ($this->routes as $route) {
-            if ($route->match($request)) {
-                return $route;
+            if ($route->matches($request)) {
+                $route->callAction();
             }
         }
-        return null;
     }
+
 }

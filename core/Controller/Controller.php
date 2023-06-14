@@ -2,14 +2,17 @@
 
 namespace Core\Controller;
 
-use Core\Renderer\Renderer;
-
 abstract class Controller
 {
-    protected Renderer $render;
+    protected string $viewPath;
+    protected string $template;
 
-    public function __construct()
+    protected function render(string $view, ?array $data = [])
     {
-        $this->render = new Renderer();
+        \ob_start();
+        \extract($data);
+        require $this->viewPath . $view . '.php';
+        $content = \ob_get_clean();
+        require $this->viewPath . $this->template . '.php';
     }
 }

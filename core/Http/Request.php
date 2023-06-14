@@ -2,23 +2,18 @@
 
 namespace Core\Http;
 
-final class Request
+class Request
 {
     private array $server;
-    private array $get;
-    private array $post;
+    private ?array $post;
+    private ?array $get;
 
-    public function __construct(array $server, array $get = [], array $post = [])
+    public function __construct()
     {
-        $this->server = $server;
-        $this->get = $get;
-        $this->post = $post;
+        $this->server = $_SERVER;
+        $this->post = $_POST;
+        $this->get = $_GET;
     }
-
-//    public static function global(): self
-//    {
-//        return new self($_SERVER, $_GET, $_POST);
-//    }
 
     public function getUri(): string
     {
@@ -30,14 +25,14 @@ final class Request
         return $this->server['REQUEST_METHOD'];
     }
 
-    public function getGet(): array
-    {
-        return $this->get;
-    }
-
-    public function getPost(): array
+    public function getPost(): ?array
     {
         return $this->post;
+    }
+
+    public function getGet(): ?array
+    {
+        return $this->get;
     }
 
 

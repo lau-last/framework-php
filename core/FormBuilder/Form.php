@@ -25,17 +25,17 @@ final class Form
         return '</form>';
     }
 
-    public static function postIsEmpty(): bool
-    {
-        if(empty($_POST)){
-            return true;
-        }
-        return false;
-    }
-
-    public static function showPost(): array
-    {
-        return $_POST;
-    }
+//    public static function postIsEmpty(): bool
+//    {
+//        if(empty($_POST)){
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public static function showPost(): array
+//    {
+//        return $_POST;
+//    }
 
 }

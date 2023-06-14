@@ -4,29 +4,29 @@ namespace Core\Router;
 
 use Core\Http\Request;
 
-final class Route
+class Route
 {
     private string $path;
-    private array $methods;
-    public array $params = [];
     private string $controllerName;
     private string $action;
+    private array $params = [];
+    private array $method;
 
 
-    public function __construct(string $path, string $controllerName, string $action, array $methods = ['GET'])
+    public function __construct(string $path, string $controllerName, string $action, array $method = ['GET'])
     {
         $this->path = $path;
         $this->controllerName = $controllerName;
         $this->action = $action;
-        $this->methods = $methods;
+        $this->method = $method;
     }
 
-    public function match(Request $request): bool
+    public function matches(Request $request): bool
     {
         $matches = [];
-        if (preg_match('#^' . $this->path . '$#sD', $request->getUri(), $matches)) {
-            if (count($matches) > 1) {
-                array_shift($matches);
+        if (\preg_match($this->path, $request->getUri(), $matches)) {
+            if (\count($matches) > 1) {
+                \array_shift($matches);
                 $this->params = $matches;
             }
             return true;
@@ -34,18 +34,16 @@ final class Route
         return false;
     }
 
-    public function callAction(): void
+    public function callAction()
     {
         $controller = new $this->controllerName;
         $action = $this->action;
         $controller->$action($this->params);
     }
 
-    /**
-     * @return array
-     */
-    public function getMethods(): array
+    public function getMethod(): array
     {
-        return $this->methods;
+        return $this->method;
     }
+
 }

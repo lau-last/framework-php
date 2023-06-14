@@ -14,7 +14,7 @@ final class Delete extends Manager
 
     public function __toString(): string
     {
-        return 'DELETE FROM ' . $this->table . ($this->where !== [] ? ' WHERE ' . implode(' AND ', $this->where) : '');
+        return 'DELETE FROM ' . $this->table . ($this->where !== [] ? ' WHERE ' . \implode(' AND ', $this->where) : '');
     }
 
     public function where(string ...$where): self

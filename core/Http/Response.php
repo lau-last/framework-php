@@ -2,7 +2,7 @@
 
 namespace Core\Http;
 
-final class Response
+class Response
 {
     public static array $statusTexts = [
         100 => 'Continue',

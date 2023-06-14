@@ -4,7 +4,7 @@ namespace Core\Session;
 
 final class Session
 {
-    public function __construct()
+    public function start()
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             \session_start();

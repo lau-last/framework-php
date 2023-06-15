@@ -6,8 +6,8 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title"><?php echo $article->getHead(); ?></h5>
-                <p class="card-text"><?php echo $article->getContent(); ?></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <p class="card-text"><?php echo $article->getExtract(); ?></p>
+                <a href="<?php echo $article->getUrl(); ?>" class="btn btn-primary">See article</a>
             </div>
             <div class="card-footer text-white headband-bottom">
                 <?php echo $article->getDate(); ?>

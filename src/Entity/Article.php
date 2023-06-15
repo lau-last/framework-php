@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+
 use Core\Entity\Entity;
 
 final class Article extends Entity
@@ -76,5 +77,15 @@ final class Article extends Entity
     {
         $this->userId = $userId;
         return $this;
+    }
+
+    public function getUrl(): string
+    {
+        return '/articles/' . $this->id;
+    }
+
+    public function getExtract():string
+    {
+        return \substr($this->content, 0, 250) . '...';
     }
 }

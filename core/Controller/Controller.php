@@ -2,17 +2,16 @@
 
 namespace Core\Controller;
 
+use Core\Renderer\Renderer;
+
 abstract class Controller
 {
-    protected string $viewPath;
-    protected string $template;
+    protected ?Renderer $renderer = null;
 
-    protected function render(string $view, ?array $data = [])
+    public function __construct()
     {
-        \ob_start();
-        \extract($data);
-        require $this->viewPath . \str_replace('.', '/', $view) . '.php';
-        $content = \ob_get_clean();
-        require $this->viewPath . $this->template . '.php';
+        if (is_null($this->renderer)) {
+            $this->renderer = new Renderer();
+        }
     }
 }

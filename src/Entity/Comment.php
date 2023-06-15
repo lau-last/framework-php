@@ -9,8 +9,8 @@ final class Comment extends Entity
     private string $content;
     private string $date;
     private string $validation;
-    private int $user_id;
-    private int $article_id;
+    private int $userId;
+    private int $articleId;
 
     public function getId(): int
     {
@@ -58,23 +58,23 @@ final class Comment extends Entity
 
     public function getUserId(): int
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(int $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
         return $this;
     }
 
     public function getArticleId(): int
     {
-        return $this->article_id;
+        return $this->articleId;
     }
 
-    public function setArticleId(int $article_id): self
+    public function setArticleId(int $articleId): self
     {
-        $this->article_id = $article_id;
+        $this->articleId = $articleId;
         return $this;
     }
 

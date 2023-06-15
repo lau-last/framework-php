@@ -36,3 +36,8 @@ ul.sub-menu {
 .headband-bottom {
     background: url("/public/assets/texture.jpg") bottom /cover;
 }
+
+.comment-container{
+    width: 75%;
+    margin: 0 auto;
+}

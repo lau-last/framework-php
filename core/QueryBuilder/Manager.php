@@ -13,7 +13,7 @@ final class Manager
         $stmt = DBConnect::getPDO()->prepare($query);
         if ($param !== []) {
             foreach ($param as $key => $value) {
-                $stmt->bindParam(':' . $key, $value);
+                $stmt->bindParam( ':' . $key, $value);
             }
         }
         $stmt->execute();

@@ -35,10 +35,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Registration</a>
+                    <a class="nav-link" href="/registration">Registration</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Connection</a>
+                    <a class="nav-link" href="/connection">Connection</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>

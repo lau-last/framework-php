@@ -24,3 +24,15 @@
 ul.sub-menu {
     width: 250px !important;
 }
+
+.mt-150 {
+    margin-top: 150px;
+}
+
+.headband-top {
+    background: url("/public/assets/texture.jpg") center;
+}
+
+.headband-bottom {
+    background: url("/public/assets/texture.jpg") bottom /cover;
+}

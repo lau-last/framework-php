@@ -17,7 +17,6 @@ final class ArticleController extends Controller
         foreach ($data as $result) {
             $articles[] = new Article($result);
         }
-        var_dump($articles);
-        $this->render('showAll');
+        $this->render('showAll', \compact('articles'));
     }
 }

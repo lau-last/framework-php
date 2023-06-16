@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace App\Model;
 use Core\Entity\Entity;
+use Core\QueryBuilder\Manager;
+use Core\QueryBuilder\Select;
 
-final class Comment extends Entity
+final class CommentModel extends Entity
 {
     private int $id;
     private string $content;
@@ -78,5 +80,13 @@ final class Comment extends Entity
         return $this;
     }
 
-
+    public function getCommentFromArticle($id): array
+    {
+        $dataComment = (new Manager())->fetchAll((new Select('comment', ['*']))->where('article_id = :article_id'), ['article_id' => $id[0]]);
+        $comments = [];
+        foreach ($dataComment as $result) {
+            $comments[] = new CommentModel($result);
+        }
+        return $comments;
+    }
 }

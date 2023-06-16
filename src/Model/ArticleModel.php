@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Model;
 
 use Core\Entity\Entity;
+use Core\QueryBuilder\Manager;
+use Core\QueryBuilder\Select;
 
-final class Article extends Entity
+final class ArticleModel extends Entity
 {
     private int $id;
     private string $title;
@@ -87,5 +89,21 @@ final class Article extends Entity
     public function getExtract():string
     {
         return \substr($this->content, 0, 250) . '...';
+    }
+
+    public function getArticles(): array
+    {
+        $data = (new Manager())->fetchAll(new Select('article', ['*']));
+        $articles = [];
+        foreach ($data as $result) {
+            $articles[] = new ArticleModel($result);
+        }
+        return $articles;
+    }
+
+    public function getArticle($id): self
+    {
+        $dataArticle = (new Manager())->fetch((new Select('article', ['*']))->where('id = :id'), ['id' => $id[0]]);
+        return new ArticleModel($dataArticle);
     }
 }

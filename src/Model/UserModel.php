@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Model;
 use Core\Entity\Entity;
 
-final class User extends Entity
+final class UserModel extends Entity
 {
     private int $id;
     private string $name;

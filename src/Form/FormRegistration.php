@@ -5,7 +5,7 @@ namespace App\Form;
 use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
 
-class FormRegistration
+final class FormRegistration
 {
     public function formRegistration(): string
     {
@@ -26,22 +26,29 @@ class FormRegistration
         return $formRegistration;
     }
 
-    public function checkPassword(array $input): bool
+
+    private function checkPassword(array $input): bool
     {
-        if (isset($input['password1']) !== isset($input['password2'])) {
-            return false;
+        if (isset($input['password1']) && isset($input['password2']) && $input['password1'] === $input['password2']) {
+            return true;
         }
-        return true;
+        return false;
     }
 
-//    public function checkEmail(array $input):bool
-//    {
-//         if(isset($input['email']) && );
-//    }
-
-    public function isValid($input)
+    private function checkEmail(array $input): bool
     {
+        if (isset($input['email']) && filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+        return false;
+    }
 
+    public function isValid(array $input): bool
+    {
+        if ($this->checkEmail($input) === true && $this->checkPassword($input) === true){
+            return true;
+        }
+        return false;
     }
 
 }

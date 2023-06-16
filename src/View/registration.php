@@ -5,7 +5,7 @@ dump($_POST);
     <div class="row mt-5 justify-content-md-center">
         <div class="col-6">
             <h2 class="text-center">Registration</h2>
-            <?php echo new \App\Form\FormRegistration(); ?>
+            <?php echo (new \App\Form\FormRegistration())->formRegistration(); ?>
         </div>
     </div>
 </div>

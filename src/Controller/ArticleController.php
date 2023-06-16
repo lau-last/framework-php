@@ -13,13 +13,13 @@ final class ArticleController extends Controller
     public function showAll()
     {
         $articles = (new ArticleModel())->getArticles();
-        $this->renderer->render('article.showAll', \compact('articles'));
+        $this->renderer->render('showAll', \compact('articles'));
     }
 
     public function show($id)
     {
         $article = (new ArticleModel())->getArticle($id);
         $comments = (new CommentModel())->getCommentFromArticle($id);
-        $this->renderer->render('article.show', \compact('article', 'comments'));
+        $this->renderer->render('show', \compact('article', 'comments'));
     }
 }

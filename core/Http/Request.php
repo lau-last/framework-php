@@ -2,7 +2,7 @@
 
 namespace Core\Http;
 
-class Request
+final class Request
 {
     private array $server;
     private ?array $post;

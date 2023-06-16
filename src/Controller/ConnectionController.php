@@ -8,6 +8,6 @@ final class ConnectionController extends Controller
 {
     public function showConnection()
     {
-        $this->renderer->render('log.connection');
+        $this->renderer->render('connection');
     }
 }

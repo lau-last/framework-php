@@ -1,5 +1,5 @@
 <?php
-$form = new \Core\FormBuilder\Form(['action' => '/', 'method' => 'post']);
+$form = new \Core\FormBuilder\Form(['action' => '/articles/' . $article->getId(), 'method' => 'post']);
 $btn = new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'btn btn-warning mb-3']);
 ?>
 <div class="container">

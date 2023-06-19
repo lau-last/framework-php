@@ -7,6 +7,7 @@ use App\Model\CommentModel;
 use Core\Controller\Controller;
 
 
+
 final class ArticleController extends Controller
 {
 
@@ -18,8 +19,18 @@ final class ArticleController extends Controller
 
     public function show($id)
     {
-        $article = (new ArticleModel())->getArticle($id);
-        $comments = (new CommentModel())->getCommentFromArticle($id);
-        $this->renderer->render('show', \compact('article', 'comments'));
+        $request = new \Core\Http\Request();
+
+        if($request->getMethod() == 'GET'){
+            $article = (new ArticleModel())->getArticle($id);
+            $comments = (new CommentModel())->getCommentFromArticle($id);
+            $this->renderer->render('show', \compact('article', 'comments'));
+        }
+        if ($request->getMethod() == 'POST'){
+            (new CommentModel())->createComment($request->getPost());
+            $article = (new ArticleModel())->getArticle($id);
+            $comments = (new CommentModel())->getCommentFromArticle($id);
+            $this->renderer->render('show', \compact('article', 'comments'));
+        }
     }
 }

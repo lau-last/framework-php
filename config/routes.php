@@ -5,4 +5,5 @@ return [
     new \Core\Router\Route('/^\/articles$/', \App\Controller\ArticleController::class, 'showAll'),
     new \Core\Router\Route('/^\/articles\/([0-9]+)$/', \App\Controller\ArticleController::class, 'show'),
     new \Core\Router\Route('/^\/registration$/', \App\Controller\RegistrationController::class, 'showRegistration'),
+    new \Core\Router\Route('/^\/connection/', \App\Controller\ConnectionController::class, 'showConnection'),
 ];

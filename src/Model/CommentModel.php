@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Model;
+
 use Core\Entity\Entity;
+use Core\Http\Request;
+use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
 use Core\QueryBuilder\Select;
+use Core\Session\Session;
 
 final class CommentModel extends Entity
 {
@@ -82,11 +86,33 @@ final class CommentModel extends Entity
 
     public function getCommentFromArticle($id): array
     {
-        $dataComment = (new Manager())->fetchAll((new Select('comment', ['*']))->where('article_id = :article_id'), ['article_id' => $id[0]]);
+        $dataComment = (new Manager())->fetchAll((
+        new Select('comment', ['*']))
+            ->where('article_id = :article_id')->orderBy('comment.date DESC'), ['article_id' => $id[0]]);
+
         $comments = [];
         foreach ($dataComment as $result) {
             $comments[] = new CommentModel($result);
         }
         return $comments;
+    }
+
+    public function createComment($input)
+    {
+        $userId = (new Session())->get('id');
+        $articleId = $this->getFirstParamsUrl() ;
+        $dataComment = (new Manager())->queryExecute(
+            new Insert('comment', ['content', 'user_id', 'article_id']), [
+            'content' => $input['comment'],
+            'user_id' => $userId,
+            'article_id' => $articleId
+        ]);
+    }
+
+    private function getFirstParamsUrl()
+    {
+        $matches = [];
+        preg_match('([0-9]+)', (new Request())->getUri(), $matches);
+        return $matches[0];
     }
 }

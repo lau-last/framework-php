@@ -2,9 +2,6 @@
 
 namespace App\Form;
 
-use Core\QueryBuilder\Insert;
-use Core\QueryBuilder\Manager;
-
 final class FormRegistration
 {
     public function formRegistration(): string
@@ -26,6 +23,13 @@ final class FormRegistration
         return $formRegistration;
     }
 
+    private function checkName(array $input): bool
+    {
+        if (isset($input['name']) && strlen($input['name']) > 3) {
+            return true;
+        }
+        return false;
+    }
 
     private function checkPassword(array $input): bool
     {
@@ -43,12 +47,20 @@ final class FormRegistration
         return false;
     }
 
-    public function isValid(array $input): bool
+
+    public function isValid(array $input): array
     {
-        if ($this->checkEmail($input) === true && $this->checkPassword($input) === true){
-            return true;
+        $errors = [];
+        if ($this->checkName($input) === false) {
+            $errors['name'] = 'the name must contain at least 3 characters';
         }
-        return false;
+        if ($this->checkEmail($input) === false) {
+            $errors['email'] = 'the email address is not valid';
+        }
+        if ($this->checkPassword($input) === false) {
+            $errors['password'] = 'passwords do not match';
+        }
+        return $errors;
     }
 
 }

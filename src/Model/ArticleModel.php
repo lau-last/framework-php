@@ -11,6 +11,7 @@ final class ArticleModel extends Entity
     private int $id;
     private string $title;
     private string $head;
+
     private string $content;
     private string $date;
     private int $userId;
@@ -103,7 +104,9 @@ final class ArticleModel extends Entity
 
     public function getArticle($id): self
     {
-        $dataArticle = (new Manager())->fetch((new Select('article', ['*']))->where('id = :id'), ['id' => $id[0]]);
+        $dataArticle = (new Manager())->fetch((
+            new Select('article', ['*']))
+            ->where('id = :id'), ['id' => $id[0]]);
         return new ArticleModel($dataArticle);
     }
 }

@@ -46,4 +46,9 @@ class Route
         return $this->method;
     }
 
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
 }

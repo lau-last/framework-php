@@ -33,7 +33,7 @@ $btn = new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'b
     <?php foreach ($comments as $comment) : ?>
         <div class="card text-center mt-5 comment-container">
             <div class="card-header headband-top text-white">
-                <?php echo $comment->getUserId(); ?>
+                <?php echo $comment->getAuthor(); ?>
             </div>
             <div class="card-body">
                 <p class="card-text"><?php echo $comment->getContent(); ?></p>

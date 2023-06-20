@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Manager\FormManager;
 
 use App\Manager\UserManager;
 use Core\Session\Session;

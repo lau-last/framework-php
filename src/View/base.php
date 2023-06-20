@@ -28,8 +28,8 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">Management</a>
                     <ul class="dropdown-menu sub-menu">
-                        <li><a class="nav-item nav-link" href="#">Post creation</a></li>
-                        <li><a class="nav-item nav-link" href="#">Post management</a></li>
+                        <li><a class="nav-item nav-link" href="/article-creation">Article creation</a></li>
+                        <li><a class="nav-item nav-link" href="#">Article management</a></li>
                         <li><a class="nav-item nav-link" href="#">Comment management</a></li>
                         <li><a class="nav-item nav-link" href="#">User management</a></li>
                     </ul>
@@ -47,7 +47,10 @@
         </div>
     </div>
 </nav>
-
+<div class="image-container">
+    <img id="portrait-chat" src="/public/assets/portrait-chat.jpg" class="img-thumbnail" alt="...">
+    <img id="background-blog" src="/public/assets/texture.jpg" class="img-fluid" alt="...">
+</div>
 <?php echo $content ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

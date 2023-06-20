@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-150">
     <?php foreach ($articles as $article): ?>
         <div class="card text-center mt-5">
             <div class="card-header headband-top text-white">
@@ -10,7 +10,7 @@
                 <a href="<?php echo $article->getUrl(); ?>" class="btn btn-warning">See article</a>
             </div>
             <div class="card-footer text-white headband-bottom">
-                <?php echo $article->getDate(); ?>
+                Posted by <?php echo $article->getAuthor(); ?> at <?php echo $article->getDate(); ?>
             </div>
         </div>
     <?php endforeach; ?>

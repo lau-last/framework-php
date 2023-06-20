@@ -1,5 +1,5 @@
 <?php $form = new \Core\FormBuilder\Form(['action' => '/post-comment/' . $article->getId(), 'method' => 'post']); ?>
-<div class="container">
+<div class="container mt-150">
     <div class="card text-center mt-5">
         <div class="card-header headband-top text-white">
             <?php echo $article->getTitle(); ?>
@@ -9,7 +9,7 @@
             <p class="card-text"><?php echo $article->getContent(); ?></p>
         </div>
         <div class="card-footer text-white headband-bottom">
-            <?php echo $article->getDate(); ?>
+            Posted by <?php echo $article->getAuthor(); ?> at <?php echo $article->getDate(); ?>
         </div>
     </div>
 
@@ -18,10 +18,7 @@
             <div class="col-6">
                 <h2 class="text-center mb-3">Your comment</h2>
                 <?php echo $form->start(); ?>
-                <?php echo (new \Core\FormBuilder\Textarea('comment', ['id' => 'comment', 'class' => 'form-control mb-3']))->required(); ?>
-                <div class="d-flex justify-content-center">
-                    <?php echo new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'btn btn-warning mb-3']); ?>
-                </div>
+                <?php echo (new \App\Manager\FormManager\FormCreationComment())->formCreationComment(); ?>
                 <?php echo $form->end(); ?>
             </div>
         </div>

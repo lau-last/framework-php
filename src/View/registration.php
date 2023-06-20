@@ -1,11 +1,8 @@
-<?php
-dump($_POST);
-?>
-<div class="container">
+<div class="container mt-150">
     <div class="row mt-5 justify-content-md-center">
         <div class="col-6">
             <h2 class="text-center">Registration</h2>
-            <?php echo (new \App\Form\FormRegistration())->formRegistration(); ?>
+            <?php echo (new \App\Manager\FormManager\FormRegistration())->formRegistration(); ?>
         </div>
     </div>
 </div>

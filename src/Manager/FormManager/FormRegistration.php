@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Manager\FormManager;
 
 final class FormRegistration
 {
@@ -14,7 +14,7 @@ final class FormRegistration
         $formRegistration .= (new \Core\FormBuilder\Input('email', 'email', ['id' => 'email', 'class' => "form-control mb-3"]))->required();
         $formRegistration .= (new \Core\FormBuilder\Label('Password', ['for' => 'password1', 'class' => 'form-label']));
         $formRegistration .= (new \Core\FormBuilder\Input('password1', 'password', ['id' => 'password1', 'class' => "form-control mb-3"]))->required();
-        $formRegistration .= (new \Core\FormBuilder\Label('Password', ['for' => 'password2', 'class' => 'form-label']));
+        $formRegistration .= (new \Core\FormBuilder\Label('Verify password', ['for' => 'password2', 'class' => 'form-label']));
         $formRegistration .= (new \Core\FormBuilder\Input('password2', 'password', ['id' => 'password2', 'class' => "form-control mb-3"]))->required();
         $formRegistration .= '<div class="d-flex justify-content-center">';
         $formRegistration .= new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'btn btn-warning mb-3']);

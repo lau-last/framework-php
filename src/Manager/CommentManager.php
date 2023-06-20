@@ -41,7 +41,7 @@ final class CommentManager extends CommentEntity
     public function createComment(array $input, int $articleId)
     {
         $userId = (new Session())->get('id');
-        $dataComment = (new Manager())->queryExecute(
+        (new Manager())->queryExecute(
             new Insert('comment', ['content', 'user_id', 'article_id']), [
             'content' => trim($input['comment']),
             'user_id' => $userId,

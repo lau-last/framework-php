@@ -1,26 +1,23 @@
 <?php
 
-namespace App\Model;
+namespace App\Entity;
 
-use Core\Entity\Entity;
-use Core\QueryBuilder\Manager;
-use Core\QueryBuilder\Select;
+use Core\Entity\Hydrate;
 
-final class ArticleModel extends Entity
+abstract class ArticleEntity extends Hydrate
 {
-    private int $id;
-    private string $title;
-    private string $head;
+    protected int $id;
+    protected string $title;
+    protected string $head;
 
-    private string $content;
-    private string $date;
-    private int $userId;
+    protected string $content;
+    protected string $date;
+    protected int $userId;
 
     public function getId(): int
     {
         return $this->id;
     }
-
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -80,33 +77,5 @@ final class ArticleModel extends Entity
     {
         $this->userId = $userId;
         return $this;
-    }
-
-    public function getUrl(): string
-    {
-        return '/articles/' . $this->id;
-    }
-
-    public function getExtract():string
-    {
-        return \substr($this->content, 0, 250) . '...';
-    }
-
-    public function getArticles(): array
-    {
-        $data = (new Manager())->fetchAll(new Select('article', ['*']));
-        $articles = [];
-        foreach ($data as $result) {
-            $articles[] = new ArticleModel($result);
-        }
-        return $articles;
-    }
-
-    public function getArticle($id): self
-    {
-        $dataArticle = (new Manager())->fetch((
-            new Select('article', ['*']))
-            ->where('id = :id'), ['id' => $id[0]]);
-        return new ArticleModel($dataArticle);
     }
 }

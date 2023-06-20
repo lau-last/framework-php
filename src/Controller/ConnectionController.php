@@ -8,17 +8,16 @@ use Core\Http\Request;
 
 final class ConnectionController extends Controller
 {
-    public function showConnection()
+    public function showFormConnection()
     {
-        $request = new Request();
-        $form = new FormConnection();
+        $this->renderer->render('connection');
+    }
 
-        if($request->getMethod() == 'GET'){
-            $this->renderer->render('connection');
-        }
-        if ($request->getMethod() == 'POST'){
-            $form->registerSession($request->getPost());
-            $this->renderer->render('connection');
-        }
+    public function doConnection()
+    {
+        $form = new FormConnection();
+        $request = new Request();
+        $form->registerSession($request->getPost());
+        $this->renderer->render('home');
     }
 }

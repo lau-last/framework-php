@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Model\UserModel;
+use App\Manager\UserManager;
 use Core\Session\Session;
 
 final class FormConnection
 {
     public function FormConnection(): string
     {
-        $form = new \Core\FormBuilder\Form(['action' => '/connection', 'method' => 'post']);
+        $form = new \Core\FormBuilder\Form(['action' => '/do-connection', 'method' => 'post']);
         $formConnection = $form->start();
         $formConnection .= (new \Core\FormBuilder\Label('Email address', ['for' => 'email', 'class' => 'form-label']));
         $formConnection .= (new \Core\FormBuilder\Input('email', 'email', ['id' => 'email', 'class' => "form-control mb-3"]))->required();
@@ -29,7 +29,7 @@ final class FormConnection
             $email = trim($input['email']);
             $password = trim($input['password']);
 
-            $userInfo = (new UserModel())->getUserInfo($email);
+            $userInfo = (new UserManager())->getUserInfo($email);
 
             if (md5($password) == $userInfo->getPassword()) {
                 $session = new Session();

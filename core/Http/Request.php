@@ -30,10 +30,20 @@ final class Request
         return $this->post;
     }
 
+    public function setPost(?array $post): self
+    {
+        $this->post = $post;
+        return $this;
+    }
+
     public function getGet(): ?array
     {
         return $this->get;
     }
 
+    public function unsetPost()
+    {
+        unset($this->post);
+    }
 
 }

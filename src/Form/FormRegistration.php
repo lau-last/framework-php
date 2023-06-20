@@ -6,7 +6,7 @@ final class FormRegistration
 {
     public function formRegistration(): string
     {
-        $form = (new \Core\FormBuilder\Form(['action' => '/registration', 'method' => 'post']));
+        $form = (new \Core\FormBuilder\Form(['action' => '/do-registration', 'method' => 'post']));
         $formRegistration = $form->start();
         $formRegistration .= (new \Core\FormBuilder\Label('Name', ['for' => 'name', 'class' => 'form-label']));
         $formRegistration .= (new \Core\FormBuilder\Input('name', 'text', ['id' => 'name', 'class' => "form-control mb-3"]))->required();
@@ -25,7 +25,7 @@ final class FormRegistration
 
     private function checkName(array $input): bool
     {
-        if (isset($input['name']) && strlen($input['name']) > 3) {
+        if (isset($input['name']) && strlen($input['name']) > 2) {
             return true;
         }
         return false;

@@ -3,31 +3,27 @@
 namespace App\Controller;
 
 use App\Form\FormRegistration;
-use App\Model\UserModel;
+use App\Manager\UserManager;
 use Core\Controller\Controller;
 use Core\Http\Request;
 
 final class RegistrationController extends Controller
 {
-    public function showRegistration(): ?array
+    public function showFormRegistration()
+    {
+        $this->renderer->render('registration');
+    }
+
+    public function doRegistration(): ?array
     {
         $request = new Request();
         $registration = new FormRegistration();
-
-        if ($request->getMethod() == "GET") {
-            $this->renderer->render('registration');
+        $errors = $registration->isValid($request->getPost());
+        if (empty($errors)) {
+            (new UserManager())->UserRegistration($request->getPost());
+            $this->renderer->render('home');
         }
-        if ($request->getMethod() == "POST") {
-            $errors = $registration->isValid($_POST);
-
-            if (empty($errors)) {
-                (new UserModel())->UserRegistration($_POST);
-                $this->renderer->render('home');
-            } else {
-                dump($errors);
-            }
-        }
-        return null;
+        return $errors;
     }
 
 }

@@ -1,7 +1,4 @@
-<?php
-$form = new \Core\FormBuilder\Form(['action' => '/articles/' . $article->getId(), 'method' => 'post']);
-$btn = new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'btn btn-warning mb-3']);
-?>
+<?php $form = new \Core\FormBuilder\Form(['action' => '/post-comment/' . $article->getId(), 'method' => 'post']); ?>
 <div class="container">
     <div class="card text-center mt-5">
         <div class="card-header headband-top text-white">
@@ -23,7 +20,7 @@ $btn = new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'b
                 <?php echo $form->start(); ?>
                 <?php echo (new \Core\FormBuilder\Textarea('comment', ['id' => 'comment', 'class' => 'form-control mb-3']))->required(); ?>
                 <div class="d-flex justify-content-center">
-                    <?php echo $btn; ?>
+                    <?php echo new \Core\FormBuilder\Button('Submit', ['type' => 'submit', 'class' => 'btn btn-warning mb-3']); ?>
                 </div>
                 <?php echo $form->end(); ?>
             </div>

@@ -29,7 +29,7 @@
                        aria-expanded="false">Management</a>
                     <ul class="dropdown-menu sub-menu">
                         <li><a class="nav-item nav-link" href="/article-creation">Article creation</a></li>
-                        <li><a class="nav-item nav-link" href="#">Article management</a></li>
+                        <li><a class="nav-item nav-link" href="/article-management">Article management</a></li>
                         <li><a class="nav-item nav-link" href="#">Comment management</a></li>
                         <li><a class="nav-item nav-link" href="#">User management</a></li>
                     </ul>

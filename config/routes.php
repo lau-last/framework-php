@@ -12,4 +12,6 @@ return [
     new \Core\Router\Route('/^\/logout$/', \App\Controller\FormController::class, 'logout'),
     new \Core\Router\Route('/^\/article-creation/', \App\Controller\FormController::class, 'showFormCreationArticle'),
     new \Core\Router\Route('/^\/do-article-creation/', \App\Controller\ArticleController::class, 'postArticle'),
+    new \Core\Router\Route('/^\/article-management/', \App\Controller\ArticleController::class, 'modifyArticle'),
+    new \Core\Router\Route('/^\/modify-article/', \App\Controller\FormController::class, 'showFormModifyArticle'),
 ];

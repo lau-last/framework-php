@@ -29,4 +29,12 @@ final class ArticleController extends Controller
         (new ArticleManager())->createArticle($request->getPost());
         header('Location:/articles');
     }
+
+    public function modifyArticle()
+    {
+        $articles = (new ArticleManager())->getArticles();
+        $this->renderer->render('management-article', \compact('articles'));
+    }
+
+
 }

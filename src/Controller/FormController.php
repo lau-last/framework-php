@@ -52,4 +52,9 @@ final class FormController extends Controller
         $this->renderer->render('creation-article');
     }
 
+    public function showFormModifyArticle()
+    {
+        $this->renderer->render('modify-article');
+    }
+
 }

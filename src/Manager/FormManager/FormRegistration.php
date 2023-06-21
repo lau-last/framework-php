@@ -52,13 +52,13 @@ final class FormRegistration
     {
         $errors = [];
         if ($this->checkName($input) === false) {
-            $errors['name'] = 'the name must contain at least 3 characters';
+            $errors['name'] = 'The name must contain at least 3 characters';
         }
         if ($this->checkEmail($input) === false) {
-            $errors['email'] = 'the email address is not valid';
+            $errors['email'] = 'The email address is not valid';
         }
         if ($this->checkPassword($input) === false) {
-            $errors['password'] = 'passwords do not match';
+            $errors['password'] = 'Passwords do not match';
         }
         return $errors;
     }

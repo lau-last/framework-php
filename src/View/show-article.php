@@ -13,18 +13,30 @@
             Posted by <?php echo $article->getAuthor(); ?> at <?php echo $article->getDate(); ?>
         </div>
     </div>
-
-    <div class="container">
-        <div class="row mt-5 justify-content-md-center">
-            <div class="col-6">
-                <h2 class="text-center mb-3">Your comment</h2>
-                <?php echo $form->start(); ?>
-                <?php echo (new \App\Manager\FormManager\FormCreationComment())->formCreationComment(); ?>
-                <?php echo $form->end(); ?>
+    <?php if (\App\Manager\UserManager::userIsConnected()) { ?>
+        <div class="container">
+            <div class="row mt-5 mb-5 justify-content-md-center">
+                <div class="col-6">
+                    <h2 class="text-center mb-3">Your comment</h2>
+                    <?php echo $form->start(); ?>
+                    <?php echo (new \App\Manager\FormManager\FormCreationComment())->formCreationComment(); ?>
+                    <?php echo $form->end(); ?>
+                </div>
             </div>
         </div>
-    </div>
-
+    <?php }
+    if (!\App\Manager\UserManager::userIsConnected()) { ?>
+        <div class="container">
+            <div class="row mt-5 mb-5 justify-content-md-center">
+                <div class="col-6">
+                    <h2 class="text-center mb-3">You must be logged in to leave a comment</h2>
+                    <div  class="d-flex justify-content-center">
+                        <a href="/connection" class="btn btn-warning">Connection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php }; ?>
     <div class="container">
         <h2 class="text-center">Comments</h2>
     </div>

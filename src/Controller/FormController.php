@@ -36,7 +36,7 @@ final class FormController extends Controller
         $this->renderer->render('registration');
     }
 
-    public function doRegistration(): ?array
+    public function doRegistration(): void
     {
         $request = new Request();
         $registration = new FormRegistration();
@@ -45,7 +45,7 @@ final class FormController extends Controller
             (new UserManager())->UserRegistration($request->getPost());
             header('Location:/');
         }
-        return $errors;
+        $this->renderer->render('registration', compact('errors'));
     }
 
     public function showFormCreationArticle()
@@ -56,7 +56,7 @@ final class FormController extends Controller
     public function showFormModifyArticle($id)
     {
         $article = (new ArticleManager())->getArticle($id);
-        $this->renderer->render('modify-article',  \compact('article'));
+        $this->renderer->render('modify-article', \compact('article'));
     }
 
 }

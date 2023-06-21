@@ -25,6 +25,10 @@ ul.sub-menu {
     width: 250px !important;
 }
 
+li.notification-connection{
+    background: red;
+}
+
 .mt-150 {
     margin-top: 150px;
 }

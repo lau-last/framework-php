@@ -1,5 +1,7 @@
 <div class="container mt-150">
-    <h1 class="text-center">Chat-dev, could you provide me with a keyboard? <br> I will create some regex for you.</h1>
+    <h1 class="text-center mb-5">Hello <?php echo \App\Manager\Notification::helloName(); ?> !</h1>
+
+    <h2 class="text-center">Chat-dev, could you provide me with a keyboard? <br> I will create some regex for you.</h2>
     <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias expedita, fugit harum impedit neque
         non
         obcaecati

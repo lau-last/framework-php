@@ -24,38 +24,49 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/articles">Posts</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">Management</a>
-                    <ul class="dropdown-menu sub-menu">
-                        <li><a class="nav-item nav-link" href="/article-creation">Article creation</a></li>
-                        <li><a class="nav-item nav-link" href="/article-management">Article management</a></li>
-                        <li><a class="nav-item nav-link" href="/comment-management">Comment management
-                                <?php if (\App\Manager\Notification::notificationInvalidComment() != 0) {
-                                    echo '<span class="badge rounded-pill bg-danger">' . \App\Manager\Notification::notificationInvalidComment() . '</span>';
-                                } ?>
-                            </a></li>
-                        <li><a class="nav-item nav-link" href="/user-management">User management</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/registration">Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/connection">Connection</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
+                <?php if (\App\Manager\UserManager::userIsAdmin()) { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">Management</a>
+                        <ul class="dropdown-menu sub-menu">
+                            <li><a class="nav-item nav-link" href="/article-creation">Article creation</a></li>
+                            <li><a class="nav-item nav-link" href="/article-management">Article management</a></li>
+                            <li><a class="nav-item nav-link" href="/comment-management">Comment management
+                                    <?php if (\App\Manager\Notification::notificationInvalidComment() != 0) {
+                                        echo '<span class="badge rounded-pill bg-danger">' . \App\Manager\Notification::notificationInvalidComment() . '</span>';
+                                    }; ?>
+                                </a></li>
+                            <li><a class="nav-item nav-link" href="/user-management">User management</a></li>
+                        </ul>
+                    </li>
+                <?php }; ?>
+                <?php if (!\App\Manager\UserManager::userIsConnected()) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/connection">Connection</a>
+                    </li>
+                <?php }; ?>
+                <?php if (\App\Manager\UserManager::userIsConnected()) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                <?php }; ?>
             </ul>
         </div>
+        <?php if (\App\Manager\UserManager::userIsConnected()) {
+            echo '<span class="badge bg-warning text-dark">Connected</span>';
+        } else {
+            echo '<span class="badge bg-danger">Offline</span>';
+        }; ?>
     </div>
 </nav>
 <div class="image-container">
     <img id="portrait-chat" src="/public/assets/portrait-chat.jpg" class="img-thumbnail" alt="...">
     <img id="background-blog" src="/public/assets/texture.jpg" class="img-fluid" alt="...">
 </div>
-<?php echo $content ?>
+<?php echo $content; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

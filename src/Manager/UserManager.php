@@ -23,17 +23,17 @@ final class UserManager extends UserEntity
         ]);
     }
 
-    public function userIsConnected(): bool
+    public static function userIsConnected(): bool
     {
-        if (!empty((new Session())->get('member'))) {
+        if (!empty((new Session())->get('name'))) {
             return true;
         }
         return false;
     }
 
-    public function userIsAdmin(): bool
+    public static function userIsAdmin(): bool
     {
-        if ($this->userIsConnected() && (new Session())->get('role') == 'admin') {
+        if (self::userIsConnected() && (new Session())->get('role') == 'admin') {
             return true;
         }
         return false;

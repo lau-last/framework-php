@@ -1,5 +1,10 @@
 <div class="container mt-150">
     <h1 class="text-center">Comment management</h1>
+    <?php if (\App\Manager\Notification::notificationInvalidComment() === '0') :?>
+        <div class="alert alert-warning text-center mt-5" role="alert">
+            No more comments to validate
+        </div>
+    <?php endif;?>
     <?php foreach ($comments as $comment) : ?>
         <div class="card text-center mt-5 comment-container">
             <div class="card-header headband-top text-white">

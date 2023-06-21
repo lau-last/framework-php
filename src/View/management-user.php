@@ -10,8 +10,8 @@
                 <a href="user-delete/<?php echo $user->getId(); ?>" class="btn btn-danger">Delete</a>
                 <?php if ($user->getRole() == 'user') { ?>
                     <a href="user-admin/<?php echo $user->getId(); ?>" class="btn btn-warning">Set admin</a>
-                <?php }
-                if ($user->getRole() == 'admin') { ?>
+                <?php } ?>
+                <?php if ($user->getRole() == 'admin') { ?>
                     <a href="user-user/<?php echo $user->getId(); ?>" class="btn btn-warning">Set user</a>
                 <?php } ?>
             </div>

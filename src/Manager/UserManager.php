@@ -3,9 +3,11 @@
 namespace App\Manager;
 
 use App\Entity\UserEntity;
+use Core\QueryBuilder\Delete;
 use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
 use Core\QueryBuilder\Select;
+use Core\QueryBuilder\Update;
 use Core\Session\Session;
 
 final class UserManager extends UserEntity
@@ -43,6 +45,42 @@ final class UserManager extends UserEntity
         new Select('user', ['*']))
             ->where('email = :email'), ['email' => $info]);
         return new UserManager($dataUser);
+    }
+
+    public function getAllUsers(): array
+    {
+        $data = (new Manager())->fetchAll(new Select('user', ['*']));
+        $users = [];
+        foreach ($data as $res) {
+            $users[] = new UserManager($res);
+        }
+        return $users;
+    }
+
+    public function setUserAdmin($id)
+    {
+        (new Manager())->queryExecute(
+            (new Update('user'))
+                ->set('user.role = "admin"')
+                ->where('id = :id'), ['id' => $id[0]]
+        );
+    }
+
+    public function setUserUser($id)
+    {
+        (new Manager())->queryExecute(
+            (new Update('user'))
+                ->set('user.role = "user"')
+                ->where('id = :id'), ['id' => $id[0]]
+        );
+    }
+
+    public function deleteUser($id)
+    {
+        (new Manager())->queryExecute(
+            (new Delete('user'))
+                ->where('id = :id'), ['id' => $id[0]]
+        );
     }
 
 }

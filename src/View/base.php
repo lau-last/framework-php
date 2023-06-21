@@ -30,8 +30,12 @@
                     <ul class="dropdown-menu sub-menu">
                         <li><a class="nav-item nav-link" href="/article-creation">Article creation</a></li>
                         <li><a class="nav-item nav-link" href="/article-management">Article management</a></li>
-                        <li><a class="nav-item nav-link" href="#">Comment management</a></li>
-                        <li><a class="nav-item nav-link" href="#">User management</a></li>
+                        <li><a class="nav-item nav-link" href="/comment-management">Comment management
+                                <?php if (\App\Manager\Notification::notificationInvalidComment() != 0) {
+                                    echo '<span class="badge rounded-pill bg-danger">' . \App\Manager\Notification::notificationInvalidComment() . '</span>';
+                                } ?>
+                            </a></li>
+                        <li><a class="nav-item nav-link" href="/user-management">User management</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

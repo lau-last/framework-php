@@ -16,4 +16,22 @@ final class CommentController extends Controller
         (new CommentManager())->createComment($request->getPost(), $articleId);
         header('Location: /articles/' . $articleId);
     }
+
+    public function showAll()
+    {
+        $comments = (new CommentManager())->getAllComments();
+        $this->renderer->render('management-comment', \compact('comments'));
+    }
+
+    public function setValidComment($id)
+    {
+        (new CommentManager())->updateCommentSetValid($id);
+        header('Location: /comment-management');
+    }
+
+    public function doDeleteComment($id)
+    {
+        (new CommentManager())->deleteComment($id);
+        header('Location: /comment-management');
+    }
 }

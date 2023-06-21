@@ -3,9 +3,11 @@
 namespace App\Manager;
 
 use App\Entity\ArticleEntity;
+use Core\QueryBuilder\Delete;
 use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
 use Core\QueryBuilder\Select;
+use Core\QueryBuilder\Update;
 use Core\Session\Session;
 
 final class ArticleManager extends ArticleEntity
@@ -65,5 +67,28 @@ final class ArticleManager extends ArticleEntity
             'head' => $input['head'],
             'content' => $input['content']
         ]);
+    }
+
+    public function updateArticle(array $input, $id)
+    {
+        $userId = (new Session())->get('id');
+        (new Manager())->queryExecute(
+            (new Update('article'))
+                ->set('title = :title, head = :head, content = :content, user_id = :user_id')
+                ->where('id = :id'), [
+            'title' => $input['title'],
+            'head' => $input['head'],
+            'content' => $input['content'],
+            'user_id' => $userId,
+            'id' => $id[0]
+        ]);
+    }
+
+    public function deleteArticle($id)
+    {
+        (new Manager())->queryExecute(
+            (new Delete('article'))
+                ->where('article.id = :id'), ['id' => $id[0]]
+        );
     }
 }

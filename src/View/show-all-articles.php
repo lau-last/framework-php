@@ -1,4 +1,5 @@
 <div class="container mt-150">
+    <h1 class="text-center">All Articles</h1>
     <?php foreach ($articles as $article): ?>
         <div class="card text-center mt-5">
             <div class="card-header headband-top text-white">

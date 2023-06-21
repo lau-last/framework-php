@@ -12,6 +12,18 @@ abstract class UserEntity extends Hydrate
     protected string $password;
     protected string $email;
     protected string $role;
+    protected string $date;
+
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): UserEntity
+    {
+        $this->date = $date;
+        return $this;
+    }
 
     public function getId(): int
     {

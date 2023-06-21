@@ -36,5 +36,18 @@ final class ArticleController extends Controller
         $this->renderer->render('management-article', \compact('articles'));
     }
 
+    public function doModifyArticle($id)
+    {
+        $request = new Request();
+        (new ArticleManager())->updateArticle($request->getPost(), $id);
+        header('Location: /article-management');
+    }
+
+    public function doDeleteArticle($id)
+    {
+        (new ArticleManager())->deleteArticle($id);
+        header('Location: /article-management');
+    }
+
 
 }

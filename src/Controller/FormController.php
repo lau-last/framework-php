@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Manager\ArticleManager;
 use App\Manager\FormManager\FormConnection;
 use App\Manager\FormManager\FormRegistration;
 use App\Manager\UserManager;
@@ -52,9 +53,10 @@ final class FormController extends Controller
         $this->renderer->render('creation-article');
     }
 
-    public function showFormModifyArticle()
+    public function showFormModifyArticle($id)
     {
-        $this->renderer->render('modify-article');
+        $article = (new ArticleManager())->getArticle($id);
+        $this->renderer->render('modify-article',  \compact('article'));
     }
 
 }

@@ -1,5 +1,6 @@
 <?php $form = new \Core\FormBuilder\Form(['action' => '/post-comment/' . $article->getId(), 'method' => 'post']); ?>
 <div class="container mt-150">
+    <h1 class="text-center">Article</h1>
     <div class="card text-center mt-5">
         <div class="card-header headband-top text-white">
             <?php echo $article->getTitle(); ?>
@@ -22,6 +23,10 @@
                 <?php echo $form->end(); ?>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <h2 class="text-center">Comments</h2>
     </div>
 
     <?php foreach ($comments as $comment) : ?>

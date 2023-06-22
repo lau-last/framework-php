@@ -19,6 +19,14 @@
     <div class="d-flex justify-content-center">
         <a href="" class="btn btn-warning">My resume</a>
     </div>
+
+    <div class="row mt-5 justify-content-md-center" id="contact">
+        <div class="col-6">
+            <h2 class="text-center">Send a message</h2>
+            <?php echo (new \App\Manager\FormManager\FormContact())->FormContact(); ?>
+        </div>
+    </div>
 </div>
+
 
 

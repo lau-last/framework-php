@@ -1,5 +1,10 @@
 <div class="container mt-150">
     <h1 class="text-center">Article management</h1>
+    <?php if (\App\Manager\Notification::notificationArticleManagement() === '0') :?>
+        <div class="alert alert-warning text-center mt-5" role="alert">
+            No article to manage
+        </div>
+    <?php endif;?>
     <?php foreach ($articles as $article): ?>
         <div class="card text-center mt-5">
             <div class="card-header headband-top text-white">

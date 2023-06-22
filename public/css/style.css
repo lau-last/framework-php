@@ -25,7 +25,7 @@ ul.sub-menu {
     width: 250px !important;
 }
 
-li.notification-connection{
+li.notification-connection {
     background: red;
 }
 
@@ -34,18 +34,23 @@ li.notification-connection{
 }
 
 .headband-top {
-    background: url("/public/assets/texture.jpg") center;
+    background: url("/assets/texture.jpg") center;
 }
 
 .headband-bottom {
-    background: url("/public/assets/texture.jpg") bottom /cover;
+    background: url("/assets/texture.jpg") bottom /cover;
 }
 
-.comment-container{
+.comment-container {
     width: 50%;
     margin: 0 auto;
 }
 
-textarea{
+textarea {
     resize: none !important;
+}
+
+.icon-social-media {
+    max-width: 75px;
+    max-height: 75px;
 }

@@ -15,6 +15,33 @@ final class Notification
 
     }
 
+    public static function notificationValidComment(): string
+    {
+        return implode((new Manager())->fetch(
+            (new \Core\QueryBuilder\Select('comment', ['COUNT(validation)']))
+                ->where('validation = "valid"')));
+
+    }
+
+
+    public static function notificationArticleManagement(): string
+    {
+        return implode(
+            (new Manager())->fetch(
+                (new \Core\QueryBuilder\Select('article', ['COUNT(*)']))
+            )
+        );
+    }
+
+    public static function notificationUserManagement(): string
+    {
+        return implode(
+            (new Manager())->fetch(
+                (new \Core\QueryBuilder\Select('user', ['COUNT(*)']))
+            )
+        );
+    }
+
     public static function helloName()
     {
         return (new \Core\Session\Session())->get('name') ?? 'world';
@@ -22,7 +49,7 @@ final class Notification
 
     public static function notificationConnection(): string
     {
-        if((new UserManager())->userIsConnected()){
+        if ((new UserManager())->userIsConnected()) {
             return 'Connected';
         }
         return 'Offline';

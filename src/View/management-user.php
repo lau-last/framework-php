@@ -1,5 +1,10 @@
 <div class="container mt-150">
     <h1 class="text-center">User management</h1>
+    <?php if (\App\Manager\Notification::notificationUserManagement() === '0') : ?>
+        <div class="alert alert-warning text-center mt-5" role="alert">
+            No user to manage
+        </div>
+    <?php endif; ?>
     <?php foreach ($users as $user) : ?>
         <div class="card text-center mt-5 comment-container">
             <div class="card-header headband-top text-white">

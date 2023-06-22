@@ -37,9 +37,15 @@
             </div>
         </div>
     <?php }; ?>
+
     <div class="container">
         <h2 class="text-center">Comments</h2>
     </div>
+    <?php if (\App\Manager\Notification::notificationValidComment() === '0') :?>
+        <div class="alert alert-warning text-center mt-5" role="alert">
+            No comment to see
+        </div>
+    <?php endif;?>
 
     <?php foreach ($comments as $comment) : ?>
         <div class="card text-center mt-5 comment-container">

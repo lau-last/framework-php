@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jun 21, 2023 at 03:58 PM
--- Server version: 5.7.24
--- PHP Version: 8.1.0
+-- Hôte : localhost:8889
+-- Généré le : jeu. 22 juin 2023 à 14:24
+-- Version du serveur : 5.7.39
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `framework`
+-- Base de données : `framework`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Structure de la table `article`
 --
 
 CREATE TABLE `article` (
@@ -36,18 +36,10 @@ CREATE TABLE `article` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `article`
---
-
-INSERT INTO `article` (`id`, `user_id`, `title`, `head`, `content`, `date`) VALUES
-(1, 1, 'Qu\'est-ce que le Lorem Ipsum?', 'header 1', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker', '2023-05-19 17:35:57'),
-(2, 2, 'Pourquoi l\'utiliser?', 'header 2', 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L\'avantage du Lorem Ipsum sur un texte générique comme \'Du texte. Du texte. Du texte.\' est qu\'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour \'Lorem Ipsum\' vous conduira vers de nombreux sites qui n\'en sont encore qu\'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d\'y rajouter de petits clins d\'oeil, voire des phrases embarassantes).', '2023-05-19 17:35:57');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Structure de la table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -59,21 +51,10 @@ CREATE TABLE `comment` (
   `validation` enum('valid','invalid') NOT NULL DEFAULT 'invalid'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`id`, `user_id`, `article_id`, `content`, `date`, `validation`) VALUES
-(1, 1, 1, 'My comment on this one', '2023-06-15 15:15:40', 'valid'),
-(2, 2, 1, 'aurelie comment on this one too', '2023-06-15 15:15:40', 'valid'),
-(3, 3, 2, 'sandrine comment on that one', '2023-06-15 15:15:40', 'valid'),
-(5, 1, 1, 'un autre comment', '2023-06-21 13:48:41', 'valid'),
-(6, 1, 2, 'un autre commentaire', '2023-06-21 13:48:57', 'valid');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -86,28 +67,18 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `role`, `date`) VALUES
-(1, 'laurent', '81dc9bdb52d04dc20036dbd8313ed055', 'laurent@gmail.com', 'admin', '2023-06-15 15:13:12'),
-(2, 'aurelie', '81dc9bdb52d04dc20036dbd8313ed055', 'aurelie@gmail.com', 'user', '2023-06-15 15:13:12'),
-(3, 'sandrine', '81dc9bdb52d04dc20036dbd8313ed055', 'sandrine@gmail.com', 'user', '2023-06-15 15:13:12'),
-(23, 'francoise', '81dc9bdb52d04dc20036dbd8313ed055', 'francoise@gmail.com', 'admin', '2023-06-19 15:11:46');
-
---
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `article`
+-- Index pour la table `article`
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `comment`
+-- Index pour la table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -115,50 +86,50 @@ ALTER TABLE `comment`
   ADD KEY `article_id` (`article_id`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `article`
+-- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `article`
+-- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `comment`
+-- Contraintes pour la table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

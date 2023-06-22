@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Manager\ArticleManager;
 use App\Manager\FormManager\FormConnection;
+use App\Manager\FormManager\FormContact;
 use App\Manager\FormManager\FormRegistration;
 use App\Manager\UserManager;
 use Core\Controller\Controller;
@@ -57,6 +58,13 @@ final class FormController extends Controller
     {
         $article = (new ArticleManager())->getArticle($id);
         $this->renderer->render('modify-article', \compact('article'));
+    }
+
+    public function sendEmail()
+    {
+        $request = new Request();
+        (new FormContact())->doSendEmail($request->getPost());
+        dump($_POST);
     }
 
 }

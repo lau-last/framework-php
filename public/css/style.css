@@ -48,6 +48,7 @@ li.notification-connection {
 
 textarea {
     resize: none !important;
+    min-height: 200px !important;
 }
 
 .icon-social-media {

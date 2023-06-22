@@ -23,4 +23,5 @@ return [
     new \Core\Router\Route('/^\/user-admin\/([0-9]+)$/', \App\Controller\UserController::class, 'setAdmin'),
     new \Core\Router\Route('/^\/user-user\/([0-9]+)$/', \App\Controller\UserController::class, 'setUser'),
     new \Core\Router\Route('/^\/user-delete\/([0-9]+)$/', \App\Controller\UserController::class, 'doDeleteUser'),
+    new \Core\Router\Route('/^\/do-contact$/', \App\Controller\FormController::class, 'sendEmail'),
 ];

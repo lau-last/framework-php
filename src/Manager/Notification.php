@@ -44,7 +44,7 @@ final class Notification
 
     public static function helloName()
     {
-        return (new \Core\Session\Session())->get('name') ?? 'world';
+        return (new \App\SessionBlog\SessionBlog())->get('name') ?? 'world';
     }
 
     public static function notificationConnection(): string

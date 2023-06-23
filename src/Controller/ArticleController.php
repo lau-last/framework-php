@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Manager\CommentManager;
 use App\Manager\ArticleManager;
+use App\Manager\UserManager;
 use Core\Controller\Controller;
 use Core\Http\Request;
 
@@ -33,7 +34,10 @@ final class ArticleController extends Controller
     public function modifyArticle()
     {
         $articles = (new ArticleManager())->getArticles();
-        $this->renderer->render('management-article', \compact('articles'));
+        UserManager::userIsAdmin() ?
+            $this->renderer->render('management-article', \compact('articles')) :
+            header('Location: /403');
+
     }
 
     public function doModifyArticle($id)

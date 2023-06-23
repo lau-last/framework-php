@@ -7,6 +7,7 @@ use App\Manager\FormManager\FormConnection;
 use App\Manager\FormManager\FormContact;
 use App\Manager\FormManager\FormRegistration;
 use App\Manager\UserManager;
+use App\SessionBlog\SessionBlog;
 use Core\Controller\Controller;
 use Core\Http\Request;
 use Core\Session\Session;
@@ -22,13 +23,17 @@ final class FormController extends Controller
     {
         $form = new FormConnection();
         $request = new Request();
-        $form->registerSession($request->getPost());
+        if (!$form->registerSession($request->getPost())) {
+            $errors[] = 'The login or password is incorrect';
+            $this->renderer->render('connection', compact('errors'));
+            exit();
+        }
         header('Location:/');
     }
 
     public function logout()
     {
-        (new Session())->destroy();
+        (new SessionBlog())->destroy();
         header('Location:/');
     }
 

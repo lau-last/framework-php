@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Manager\ArticleManager;
 use App\Manager\CommentManager;
+use App\Manager\UserManager;
 use Core\Controller\Controller;
 use Core\Http\Request;
 
@@ -20,7 +21,9 @@ final class CommentController extends Controller
     public function showAll()
     {
         $comments = (new CommentManager())->getAllComments();
-        $this->renderer->render('management-comment', \compact('comments'));
+        UserManager::userIsAdmin() ?
+            $this->renderer->render('management-comment', \compact('comments')) :
+            header('Location: /403');
     }
 
     public function setValidComment($id)

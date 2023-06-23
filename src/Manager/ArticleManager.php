@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\ArticleEntity;
+use App\SessionBlog\SessionBlog;
 use Core\QueryBuilder\Delete;
 use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
@@ -59,7 +60,7 @@ final class ArticleManager extends ArticleEntity
 
     public function createArticle(array $input)
     {
-        $userId = (new Session())->get('id');
+        $userId = (new SessionBlog())->get('id');
         (new Manager())->queryExecute(
             new Insert('article', ['user_id', 'title', 'head', 'content',]), [
             'user_id' => $userId,
@@ -71,7 +72,7 @@ final class ArticleManager extends ArticleEntity
 
     public function updateArticle(array $input, $id)
     {
-        $userId = (new Session())->get('id');
+        $userId = (new SessionBlog())->get('id');
         (new Manager())->queryExecute(
             (new Update('article'))
                 ->set('title = :title, head = :head, content = :content, user_id = :user_id')

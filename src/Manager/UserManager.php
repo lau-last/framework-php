@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\UserEntity;
+use App\SessionBlog\SessionBlog;
 use Core\QueryBuilder\Delete;
 use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
@@ -25,7 +26,7 @@ final class UserManager extends UserEntity
 
     public static function userIsConnected(): bool
     {
-        if (!empty((new Session())->get('name'))) {
+        if (!empty((new SessionBlog())->get('name'))) {
             return true;
         }
         return false;
@@ -33,17 +34,18 @@ final class UserManager extends UserEntity
 
     public static function userIsAdmin(): bool
     {
-        if (self::userIsConnected() && (new Session())->get('role') == 'admin') {
+        if (self::userIsConnected() && (new SessionBlog())->get('role') == 'admin') {
             return true;
         }
         return false;
     }
 
-    public function getUserInfo($info): self
+    public function getUserInfo($info): ?self
     {
         $dataUser = (new Manager())->fetch((
         new Select('user', ['*']))
             ->where('email = :email'), ['email' => $info]);
+        if (empty($dataUser)){return null;}
         return new UserManager($dataUser);
     }
 

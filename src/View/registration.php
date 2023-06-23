@@ -5,10 +5,11 @@
             <?php
             if(!empty($errors)){
                 foreach ($errors as $err) {
-                    $html = '<div class="alert alert-danger text-center" role="alert">';
+                    $html = '<div class="alert alert-warning text-center" role="alert">';
                     $html .= $err;
                     $html .= '</div>';
                     echo $html;
+
                 }
             }
             echo (new \App\Manager\FormManager\FormRegistration())->formRegistration();

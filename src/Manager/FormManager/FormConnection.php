@@ -3,7 +3,7 @@
 namespace App\Manager\FormManager;
 
 use App\Manager\UserManager;
-use Core\Session\Session;
+use App\SessionBlog\SessionBlog;
 
 final class FormConnection
 {
@@ -22,26 +22,25 @@ final class FormConnection
         return $html;
     }
 
-    public function registerSession(array $input)
+    public function registerSession(array $input): bool
     {
         if (isset($input['email']) && isset($input['password'])) {
 
             $email = trim($input['email']);
             $password = trim($input['password']);
-
             $userInfo = (new UserManager())->getUserInfo($email);
+            if ($userInfo === null) {
+                return false;
+            }
 
             if (password_verify($password, $userInfo->getPassword())) {
                 if (password_needs_rehash($userInfo->getPassword(), PASSWORD_BCRYPT)) {
                     $password = password_hash($password, PASSWORD_BCRYPT);
                     $userInfo->setPassword($password);
                 }
-                $session = new Session();
-                $session->set('id', $userInfo->getId());
-                $session->set('name', $userInfo->getName());
-                $session->set('email', $userInfo->getEmail());
-                $session->set('role', $userInfo->getRole());
+                new SessionBlog($userInfo);
             }
         }
+        return true;
     }
 }

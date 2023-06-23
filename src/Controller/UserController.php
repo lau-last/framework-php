@@ -10,7 +10,9 @@ final class UserController extends Controller
     public function showAllUser()
     {
         $users = (new UserManager())->getAllUsers();
-        $this->renderer->render('management-user', compact('users'));
+        UserManager::userIsAdmin() ?
+        $this->renderer->render('management-user', compact('users')) :
+            header('Location: /403');
     }
 
     public function setAdmin($id)

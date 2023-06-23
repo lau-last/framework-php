@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\CommentEntity;
+use App\SessionBlog\SessionBlog;
 use Core\Http\Request;
 use Core\QueryBuilder\Delete;
 use Core\QueryBuilder\Insert;
@@ -42,7 +43,7 @@ final class CommentManager extends CommentEntity
 
     public function createComment(array $input, int $articleId)
     {
-        $userId = (new Session())->get('id');
+        $userId = (new SessionBlog())->get('id');
         (new Manager())->queryExecute(
             new Insert('comment', ['content', 'user_id', 'article_id']), [
             'content' => trim($input['comment']),

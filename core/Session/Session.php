@@ -2,8 +2,10 @@
 
 namespace Core\Session;
 
-final class Session
+
+abstract class Session
 {
+
     public function start()
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {

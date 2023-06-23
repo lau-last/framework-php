@@ -70,8 +70,12 @@ final class FormController extends Controller
     public function sendEmail()
     {
         $request = new Request();
-        (new FormContact())->doSendEmail($request->getPost());
-        dump($_POST);
+        if ((new FormContact())->doSendEmail($request->getPost())) {
+            $messages = 'Message has been sent';
+        } else {
+            $messages = 'Message could not be sent';
+        }
+        $this->renderer->render('home', compact('messages'));
     }
 
 }

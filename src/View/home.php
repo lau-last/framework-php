@@ -16,7 +16,10 @@
     <div class="row mt-5 justify-content-md-center" id="contact">
         <div class="col-6">
             <h2 class="text-center">Send me a message</h2>
-            <?php echo (new \App\Manager\FormManager\FormContact())->FormContact(); ?>
+            <?php if (!empty($messages)) {
+                echo '<div class="alert alert-warning text-center mt-5" role="alert">' . $messages . '</div>';
+            }
+            echo (new \App\Manager\FormManager\FormContact())->FormContact(); ?>
         </div>
     </div>
 </div>

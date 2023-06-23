@@ -3,7 +3,7 @@
 namespace App\Manager\FormManager;
 
 
-class FormContact
+final class FormContact
 {
     public function FormContact(): string
     {

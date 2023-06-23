@@ -18,7 +18,7 @@ final class UserManager extends UserEntity
         (new Manager())->queryExecute(
             new Insert('user', ['name', 'password', 'email']), [
             'name' => $input['name'],
-            'password' => md5($input['password1']),
+            'password' => password_hash($input['password1'], PASSWORD_BCRYPT),
             'email' => $input['email']
         ]);
     }

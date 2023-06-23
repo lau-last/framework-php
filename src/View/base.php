@@ -74,12 +74,14 @@
     <img id="portrait-chat" src="/assets/portrait-chat.jpg" class="img-thumbnail" alt="...">
     <img id="background-blog" src="/assets/texture.jpg" class="img-fluid" alt="...">
 </div>
+
 <?php echo $content; ?>
+
 <footer class="bg-warning p-4 mt-5">
     <div class="d-flex align-items-center justify-content-evenly">
-        <img src="/assets/github-sign.png" class="icon-social-media" alt="">
-        <img src="/assets/linkedin.png" class="icon-social-media" alt="">
-        <img src="/assets/twitter-sign.png" class="icon-social-media" alt="">
+        <a href="https://github.com/" target="_blank"><img src="/assets/github-sign.png" class="icon-social-media" alt=""></a>
+        <a href="https://www.linkedin.com/" target="_blank"><img src="/assets/linkedin.png" class="icon-social-media" alt=""></a>
+        <a href="https://twitter.com/" target="_blank"><img src="/assets/twitter-sign.png" class="icon-social-media" alt=""></a>
     </div>
 </footer>
 

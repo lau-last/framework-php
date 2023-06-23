@@ -10,6 +10,7 @@ class Route
     private string $controllerName;
     private string $action;
     private array $params = [];
+
     private array $method;
 
 

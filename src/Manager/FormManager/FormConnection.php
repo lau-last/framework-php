@@ -31,7 +31,11 @@ final class FormConnection
 
             $userInfo = (new UserManager())->getUserInfo($email);
 
-            if (md5($password) == $userInfo->getPassword()) {
+            if (password_verify($password, $userInfo->getPassword())) {
+                if (password_needs_rehash($userInfo->getPassword(), PASSWORD_BCRYPT)) {
+                    $password = password_hash($password, PASSWORD_BCRYPT);
+                    $userInfo->setPassword($password);
+                }
                 $session = new Session();
                 $session->set('id', $userInfo->getId());
                 $session->set('name', $userInfo->getName());
@@ -40,5 +44,4 @@ final class FormConnection
             }
         }
     }
-
 }

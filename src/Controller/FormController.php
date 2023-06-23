@@ -51,7 +51,9 @@ final class FormController extends Controller
 
     public function showFormCreationArticle()
     {
-        $this->renderer->render('creation-article');
+        UserManager::userIsAdmin() ?
+            $this->renderer->render('creation-article') :
+            header('Location: /403');
     }
 
     public function showFormModifyArticle($id)

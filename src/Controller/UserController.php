@@ -11,7 +11,7 @@ final class UserController extends Controller
     {
         $users = (new UserManager())->getAllUsers();
         UserManager::userIsAdmin() ?
-        $this->renderer->render('management-user', compact('users')) :
+            $this->renderer->render('management-user', compact('users')) :
             header('Location: /403');
     }
 
@@ -33,10 +33,12 @@ final class UserController extends Controller
         header('Location: /user-management');
 
     }
+
     public function setValid($token)
     {
         (new UserManager())->setUserValid($token);
-        header('Location: /connection');
+        $errors[] = 'Your account has been successfully validated.';
+        $this->renderer->render('connection', compact('errors'));
     }
 
 }

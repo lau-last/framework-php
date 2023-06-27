@@ -39,9 +39,10 @@
     <?php }; ?>
 
     <div class="container">
-        <h2 class="text-center">Comments</h2>
+        <h2 class="text-center">Comment(s)</h2>
     </div>
-    <?php if (\App\Manager\Notification::notificationValidComment() === '0') :?>
+
+    <?php if (empty($comments)) :?>
         <div class="alert alert-warning text-center mt-5" role="alert">
             No comment to see
         </div>

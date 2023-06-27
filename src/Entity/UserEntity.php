@@ -13,13 +13,27 @@ abstract class UserEntity extends Hydrate
     protected string $email;
     protected string $role;
     protected string $date;
+    protected string $token;
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    protected string $validation;
 
     public function getDate(): string
     {
         return $this->date;
     }
 
-    public function setDate(string $date): UserEntity
+    public function setDate(string $date): self
     {
         $this->date = $date;
         return $this;
@@ -77,6 +91,17 @@ abstract class UserEntity extends Hydrate
     public function setRole(string $role): self
     {
         $this->role = $role;
+        return $this;
+    }
+
+    public function getValidation(): string
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(string $validation): self
+    {
+        $this->validation = $validation;
         return $this;
     }
 }

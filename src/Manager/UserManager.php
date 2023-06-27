@@ -9,18 +9,17 @@ use Core\QueryBuilder\Insert;
 use Core\QueryBuilder\Manager;
 use Core\QueryBuilder\Select;
 use Core\QueryBuilder\Update;
-use Core\Session\Session;
 
 final class UserManager extends UserEntity
 {
-
-    public function UserRegistration(array $input)
+    public function UserPreRegistration(array $input)
     {
         (new Manager())->queryExecute(
-            new Insert('user', ['name', 'password', 'email']), [
+            new Insert('user', ['name', 'password', 'email', 'token']), [
             'name' => $input['name'],
             'password' => password_hash($input['password1'], PASSWORD_BCRYPT),
-            'email' => $input['email']
+            'email' => $input['email'],
+            'token' => bin2hex(random_bytes(32))
         ]);
     }
 
@@ -45,7 +44,9 @@ final class UserManager extends UserEntity
         $dataUser = (new Manager())->fetch((
         new Select('user', ['*']))
             ->where('email = :email'), ['email' => $info]);
-        if (empty($dataUser)){return null;}
+        if (empty($dataUser)) {
+            return null;
+        }
         return new UserManager($dataUser);
     }
 
@@ -82,6 +83,15 @@ final class UserManager extends UserEntity
         (new Manager())->queryExecute(
             (new Delete('user'))
                 ->where('id = :id'), ['id' => $id[0]]
+        );
+    }
+
+    public function setUserValid($token)
+    {
+        (new Manager())->queryExecute(
+            (new Update('user'))
+                ->set('user.validation = "valid"')
+                ->where('token = :token'), ['token' => $token[0]]
         );
     }
 

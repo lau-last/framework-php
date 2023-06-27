@@ -27,35 +27,4 @@ final class FormContact
     }
 
 
-    public function doSendEmail($input): bool
-    {
-        $mail = new PHPMailer(true);
-
-        try {
-            //Server settings
-            $mail = new PHPMailer();
-            $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
-            $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '0679771fe93976';
-            $mail->Password = '7a8d5128f28b2d';
-
-            //Recipients
-            $mail->setFrom(trim($input['email']), 'Mailer');
-            $mail->addAddress('laurent.last7@gmail.com');     //Add a recipient
-
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = trim($input['subject']);
-            $mail->Body = trim($input['message']);
-
-            $mail->send();
-
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
 }

@@ -33,4 +33,9 @@ final class UserController extends Controller
         header('Location: /user-management');
 
     }
+    public function setValid($token)
+    {
+        (new UserManager())->setUserValid($token);
+        header('Location: /connection');
+    }
 }

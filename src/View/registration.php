@@ -2,13 +2,12 @@
     <div class="row mt-5 justify-content-md-center">
         <div class="col-6">
             <h1 class="text-center mb-5">Registration</h1>
-            <?php
-            if(!empty($errors)){
+            <?php if (!empty($messages)) {
+                echo '<div class="alert alert-warning text-center mt-5" role="alert">' . $messages . '</div>';
+            }
+            if (!empty($errors)) {
                 foreach ($errors as $err) {
-                    $html = '<div class="alert alert-warning text-center" role="alert">';
-                    $html .= $err;
-                    $html .= '</div>';
-                    echo $html;
+                    echo '<div class="alert alert-warning text-center" role="alert">' . $err . '</div>';
 
                 }
             }

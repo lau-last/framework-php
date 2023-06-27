@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Manager\ArticleManager;
+use App\Manager\EmailManager;
 use App\Manager\FormManager\FormConnection;
 use App\Manager\FormManager\FormContact;
 use App\Manager\FormManager\FormRegistration;
@@ -42,16 +43,23 @@ final class FormController extends Controller
         $this->renderer->render('registration');
     }
 
+
     public function doRegistration(): void
     {
         $request = new Request();
         $registration = new FormRegistration();
         $errors = $registration->isValid($request->getPost());
-        if (empty($errors)) {
-            (new UserManager())->UserRegistration($request->getPost());
-            header('Location:/');
+        if (!empty($errors)) {
+            $this->renderer->render('registration', compact('errors'));
+            exit();
         }
-        $this->renderer->render('registration', compact('errors'));
+        (new UserManager())->UserPreRegistration($request->getPost());
+        if (!(new EmailManager())->doSendEmailValidation($request->getPost())) {
+            $messages = 'Message could not be sent for validation retry please';
+        } else {
+            $messages = 'Message has been sent for validation';
+        }
+        $this->renderer->render('registration', compact('messages'));
     }
 
     public function showFormCreationArticle()
@@ -70,10 +78,10 @@ final class FormController extends Controller
     public function sendEmail()
     {
         $request = new Request();
-        if ((new FormContact())->doSendEmail($request->getPost())) {
-            $messages = 'Message has been sent';
-        } else {
+        if (!(new EmailManager())->doSendEmailContact($request->getPost())) {
             $messages = 'Message could not be sent';
+        } else {
+            $messages = 'Message has been sent';
         }
         $this->renderer->render('home', compact('messages'));
     }

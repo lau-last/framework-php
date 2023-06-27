@@ -8,8 +8,4 @@ require_once '../config/global.php';
 
 (new \App\SessionBlog\SessionBlog())->start();
 
-$request = new \Core\Http\Request();
-(new \Core\Router\Router(require ROOT . '/config/routes.php'))->run($request);
-
-
-
+(new \Core\Router\Router(require ROOT . '/config/routes.php'))->run(new \Core\Http\Request());

@@ -14,11 +14,12 @@ final class EmailManager
             //Server settings
             $mail = new PHPMailer(true);
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
-            $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '8c82e295d8ec59';
-            $mail->Password = 'c83be3cf5791d7';
+
+            $mail->Host = MAIL_HOST;
+            $mail->SMTPAuth = MAIL_SMTP_AUTH;
+            $mail->Port = MAIL_PORT;
+            $mail->Username = MAIL_USERNAME;
+            $mail->Password = MAIL_PASSWORD;
             //Recipients
             $mail->setFrom(trim($input['email']), 'Mailer');
             $mail->addAddress('laurent@gmail.com');     //Add a recipient
@@ -41,11 +42,12 @@ final class EmailManager
             //Server settings
             $mail = new PHPMailer(true);
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
-            $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '8c82e295d8ec59';
-            $mail->Password = 'c83be3cf5791d7';
+
+            $mail->Host = MAIL_HOST;
+            $mail->SMTPAuth = MAIL_SMTP_AUTH;
+            $mail->Port = MAIL_PORT;
+            $mail->Username = MAIL_USERNAME;
+            $mail->Password = MAIL_PASSWORD;
             //Recipients
             $mail->setFrom('No-Reply@exemple.com', 'Mailer');
             $mail->addAddress(trim($input['email']));     //Add a recipient

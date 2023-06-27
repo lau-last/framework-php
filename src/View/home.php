@@ -10,7 +10,7 @@
         Incidentally, you have a dime up your nose. Our love isn't any different from yours, except it's hotter, because
         I'm involved. Leela's gonna kill me. Who said that? SURE you can die! You want to die?!</p>
     <div class="d-flex justify-content-center">
-        <a href="" class="mt-4 btn btn-warning">My resume</a>
+        <a href="assets/CV_John_Doe.pdf" download="CV-DEV-PHP.pdf" class="mt-4 btn btn-warning">Download my resume</a>
     </div>
 
     <div class="row mt-5 justify-content-md-center" id="contact">

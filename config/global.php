@@ -5,3 +5,9 @@ const DATABASE_USER = 'root';
 const DATABASE_PASSWORD = 'root';
 const TEMPLATE = 'base';
 const VIEW_PATH = ROOT . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR;
+const MAIL_HOST = 'sandbox.smtp.mailtrap.io';
+const MAIL_SMTP_AUTH = true;
+const MAIL_PORT = 2525;
+const MAIL_USERNAME = '8c82e295d8ec59';
+const MAIL_PASSWORD = 'c83be3cf5791d7';
+

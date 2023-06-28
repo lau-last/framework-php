@@ -96,7 +96,7 @@ final class UserManager extends UserEntity
         );
     }
 
-    public function getUserExpByToken($token): ?self
+    public function getUserByToken($token): ?self
     {
        $user = (new Manager())->fetch(
             (new Select('user', ['*']))

@@ -39,7 +39,21 @@ final class UserController extends Controller
 
     public function setValid($token)
     {
-        $user = (new UserManager())->getUserExpByToken($token);
+
+        $user = (new UserManager())->getUserByToken($token);
+
+        if (empty($user)) {
+            $errors[] = 'Unknown token';
+            $this->renderer->render('connection', compact('errors'));
+            exit();
+        }
+
+        if ($user->getValidation() === 'valid') {
+            $errors[] = 'Your account is already valid';
+            $this->renderer->render('connection', compact('errors'));
+            exit();
+        }
+
         $exp = $user->getExpirationDate();
 
         if ($exp > strtotime('now')) {
@@ -49,9 +63,11 @@ final class UserController extends Controller
             exit();
         }
 
-        (new UserManager())->deleteUserByToken($token);
-        $errors[] = 'The link has expired. You have to recreate a registration';
-        $this->renderer->render('connection', compact('errors'));
+        if ($exp < strtotime('now')) {
+            (new UserManager())->deleteUserByToken($token);
+            $errors[] = 'The link has expired. You have to recreate a registration';
+            $this->renderer->render('connection', compact('errors'));
+        }
     }
 
     public function showProfile()

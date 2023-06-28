@@ -14,6 +14,20 @@ abstract class UserEntity extends Hydrate
     protected string $role;
     protected string $date;
     protected string $token;
+    protected string $expirationDate;
+
+
+    public function getExpirationDate(): string
+    {
+        return $this->expirationDate;
+    }
+
+    public function setExpirationDate(string $expirationDate): self
+    {
+        $this->expirationDate = $expirationDate;
+        return $this;
+    }
+    protected string $validation;
 
     public function getToken(): string
     {
@@ -26,7 +40,6 @@ abstract class UserEntity extends Hydrate
         return $this;
     }
 
-    protected string $validation;
 
     public function getDate(): string
     {

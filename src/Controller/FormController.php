@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Manager\ArticleManager;
 use App\Manager\EmailManager;
+use App\Manager\FormManager\FormChangePassword;
 use App\Manager\FormManager\FormConnection;
 use App\Manager\FormManager\FormContact;
 use App\Manager\FormManager\FormRegistration;
@@ -85,5 +86,6 @@ final class FormController extends Controller
         }
         $this->renderer->render('home', compact('messages'));
     }
+
 
 }

@@ -15,11 +15,12 @@ final class UserManager extends UserEntity
     public function UserPreRegistration(array $input)
     {
         (new Manager())->queryExecute(
-            new Insert('user', ['name', 'password', 'email', 'token']), [
+            new Insert('user', ['name', 'password', 'email', 'token', 'expiration_date']), [
             'name' => $input['name'],
             'password' => password_hash($input['password1'], PASSWORD_BCRYPT),
             'email' => $input['email'],
-            'token' => bin2hex(random_bytes(32))
+            'token' => bin2hex(random_bytes(32)),
+            'expiration_date' => strtotime('1 hour')
         ]);
     }
 
@@ -94,5 +95,37 @@ final class UserManager extends UserEntity
                 ->where('token = :token'), ['token' => $token[0]]
         );
     }
+
+    public function getUserExpByToken($token): ?self
+    {
+       $user = (new Manager())->fetch(
+            (new Select('user', ['*']))
+                ->where('token = :token'), ['token' => $token[0]]
+        );
+        if (empty($user)) {
+            return null;
+        }
+        return new UserManager($user);
+    }
+
+    public function deleteUserByToken($token)
+    {
+        (new Manager())->queryExecute(
+            (new Delete('user'))
+                ->where('token = :token'), ['token' => $token[0]]
+        );
+    }
+
+    public function updateNewPassword(array $input, $id)
+    {
+        (new Manager())->queryExecute(
+            (new Update('user'))
+                ->set('user.password = :password')
+                ->where('id = :id'), [
+                'password' => password_hash($input['password1'], PASSWORD_BCRYPT),
+                'id' => $id[0]]
+        );
+    }
+
 
 }

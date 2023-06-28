@@ -25,26 +25,23 @@ final class FormRegistration
 
     private function checkName(array $input): bool
     {
-        if (isset($input['name']) && strlen($input['name']) > 2) {
-            return true;
-        }
-        return false;
+        return (isset($input['name']) && strlen($input['name']) > 2);
     }
 
-    private function checkPassword(array $input): bool
+    public function checkPassword(array $input): bool
     {
-        if (isset($input['password1']) && isset($input['password2']) && $input['password1'] === $input['password2']) {
-            return true;
-        }
-        return false;
+         return (isset($input['password1']) && isset($input['password2']) && $input['password1'] === $input['password2']);
+    }
+
+    public function validPassword($input): bool
+    {
+        $regex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+        return preg_match($regex, $input['password1']);
     }
 
     private function checkEmail(array $input): bool
     {
-        if (isset($input['email']) && filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-            return true;
-        }
-        return false;
+        return (isset($input['email']) && filter_var($input['email'], FILTER_VALIDATE_EMAIL));
     }
 
 
@@ -60,7 +57,9 @@ final class FormRegistration
         if ($this->checkPassword($input) === false) {
             $errors['password'] = 'Passwords do not match';
         }
+        if ($this->validPassword($input) === false) {
+            $errors['regex'] = 'Your password must contain at least 8 characters, one uppercase, one lowercase and one special character';
+        }
         return $errors;
     }
-
 }

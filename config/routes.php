@@ -26,5 +26,6 @@ return [
     new \Core\Router\Route('/^\/do-contact$/', \App\Controller\FormController::class, 'sendEmail'),
     new \Core\Router\Route('/^\/403$/', \App\Controller\ErrorController::class, 'show403'),
     new \Core\Router\Route('/^\/confirm-registration\/([a-f0-9]{64})$/', \App\Controller\UserController::class, 'setValid'),
-    new \Core\Router\Route('/^\/profile$/', \App\Controller\UserController::class, 'seeProfile'),
+    new \Core\Router\Route('/^\/profile$/', \App\Controller\UserController::class, 'showProfile'),
+    new \Core\Router\Route('/^\/update-password\/([0-9]+)$/', \App\Controller\UserController::class, 'changePassword'),
 ];

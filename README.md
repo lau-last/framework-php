@@ -15,8 +15,8 @@ Pour installer le projet sur votre machine, suivez ces étapes :
   Les informations sur les accès utilisateurs sont disponibles au début de ce script
 
 - Modifiez *config/global.php* avec :
-    - Les constantes qui commance par MAIL pour utiliser la partie [PHPMailer](https://github.com/PHPMailer/PHPMailer) et [Mailtrap](https://mailtrap.io/)
-    - Les constantes qui commance par DATABASE pour toute la partie PDO et connection à la base de données
+    - Les constantes qui commence par MAIL pour utiliser la partie [PHPMailer](https://github.com/PHPMailer/PHPMailer) et [Mailtrap](https://mailtrap.io/)
+    - Les constantes qui commence par DATABASE pour toute la partie PDO et connection à la base de données
 
 
 ### Tout est prêt !
